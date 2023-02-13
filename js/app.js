@@ -44,5 +44,33 @@
     }
   ])
 
+  .controller("arkontroller", [
+    "$scope", 
+    "http", 
+    function ($scope, http) {
+      http
+        .request({
+          url: "./php/get.php", 
+          method: "POST", 
+          data: {
+            db: "barbershop",
+            query: "SELECT * FROM `stilus`", 
+            isAssoc: true, 
+          },
+        })
+        .then((data) => {
+          $scope.order = data; 
+          $scope.$applyAsync(); 
+          $scope.filter = null; 
+          $scope.orderFilter = (event) => {
+            let element = event.currentTarget;
+            $scope.filter = element.id; 
+            $scope.$applyAsync(); 
+          };
+        })
+        .catch((e) => console.log(e)); 
+    },
+  ]);
+  
 })(window, angular);
 
