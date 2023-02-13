@@ -219,3 +219,12 @@ h1:hover {
 
 
 /*/Borbéylok*/
+
+
+/*Elérhetőségek*/
+@media (max-width: 576px) {
+  .list-group-item {
+    flex-wrap: wrap;
+  }
+}
+/*/Elérhetőségek*/
