@@ -219,3 +219,19 @@ h1:hover {
 
 
 /*/Borbéylok*/
+
+
+footer
+{
+  background-color: #1c1c1c;
+  height: 320px;
+} 
+
+.footerp
+{
+  color: white;
+}
+.logo
+{
+  object-position: right;
+}
