@@ -163,14 +163,19 @@ h1:hover {
 
 /*Borbéylok*/
 .card {
+  
+  display: block;
   position: relative;
   width: 100%;
   overflow: hidden;
 }
+ 
 
 @media (min-width: 576px) {
   .card {
-    width: 50%;
+    width: calc(20% - 16px);
+    display: block;
+    margin-right: 16px;
   }
 }
 
@@ -182,6 +187,7 @@ h1:hover {
   width: 100%;
   padding: 20px;
   display: flex;
+  align-items: center;
 
 }
 
@@ -191,7 +197,8 @@ h1:hover {
 
 .card-text {
   display: block;
-  position:absolute;
+  font-style: italic;
+  font-weight:200;
   bottom: 0;
   padding: 20px;
   width: 100%;
@@ -202,6 +209,11 @@ h1:hover {
   font-family: 'Inconsolata', monospace;
   min-width: 100%;
 
+}
+
+.d-flex {
+  display: flex;
+  justify-content: center;
 }
 
 

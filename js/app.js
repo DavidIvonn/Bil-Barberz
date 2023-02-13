@@ -26,7 +26,9 @@
         })
         .state('ar', {
           url: '/ar',
-          templateUrl: './html/ar.html'
+          templateUrl: './html/ar.html',
+          controller:"arkontroller"
+
         })
         .state('termek', {
           url: '/termek',
