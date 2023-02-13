@@ -1,0 +1,31 @@
+<div ng-include src="'./html/navigate.html'"></div>
+
+<div class="cards">
+    <div class="card mb-3 card-custom" ng-repeat="ar in page2 track by $index">
+      <div class="card__image-holder">
+        <img ng-src="./assets/img/{{ut.kep}}" class="img-fluid" alt="Ut" />
+      </div>
+      <div class="card-title">
+        <a href="#" class="toggle-info btn">
+          <span class="left"></span>
+          <span class="right"></span>
+        </a>
+        <h2>{{ar.}}</h2>
+      </div>
+      <div class="card-flap flap1">
+        <div class="card-description">
+         <span class="fw-bold">{{ar.}}</span>
+          <span class="fw-bold">{{ar.}}</span> 
+          <span class="fw-bold">{{ar.}}</span>
+        </div>
+        <div class="card-description">{{ar.}} {{ar.}}</div>
+        <div class="card-flap flap2">
+          <div class="card-actions">
+            <a data-id="{{$index}}" ui-sref="{{szallashelyneve}}" class="btn">Részletek </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div ng-include src="'./html/footer.html'"></div>
