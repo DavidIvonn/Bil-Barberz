@@ -74,3 +74,14 @@
   
 })(window, angular);
 
+$stateProvider.state('login', {
+  url: '/login',
+  templateUrl: 'login.html',
+  controller: 'LoginController'
+})
+.state('register', {
+  url: '/register',
+  templateUrl: 'register.html',
+  controller: 'RegisterController'
+});
+
