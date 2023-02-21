@@ -189,7 +189,7 @@ h1:hover {
   display: flex;
   align-items: center;
 
-}
+} 
 
 .card:hover .card-img-overlay {
   background-color: rgba(0, 0, 0, 0.8);
