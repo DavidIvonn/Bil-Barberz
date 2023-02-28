@@ -85,3 +85,71 @@ $stateProvider.state('login', {
   controller: 'RegisterController'
 });
 
+
+
+// AJAX kérés küldése az adatok lekéréséhez
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      // A JSON adatok parse-olása
+      var stilusok = JSON.parse(xhr.responseText);
+
+      // A termékek listájának lekérése a HTML-ből
+      var stilusList = document.getElementById('stilus-list');
+
+      // A termékek hozzáadása a HTML sablonhoz
+      stilusok.forEach(function(stilus) {
+        var card = document.createElement('div');
+        card.className = 'col-sm-6 col-md-4 col-lg-3';
+        card.innerHTML = `
+        <div class="card">
+          <img src="${stilus.kep}" class="card-img-top" alt="${stilus.ar}">
+          <div class="card-body">
+            <h5 class="card-title">${stilus.megnev}</h5>
+            <p class="card-text">${stilus.leiras}</p>
+            <a href="#" class="btn btn-primary">Buy now</a>
+          </div>
+        </div>
+      `;
+      stilusList.appendChild(card);
+    });
+  }
+};
+xhr.open('GET', 'arlista.php', true);
+xhr.send();
+
+
+       
+const showOnPx = 100;
+const backToTopButton = document.querySelector(".back-to-top");
+const pageProgressBar = document.querySelector(".progress-bar");
+
+const scrollContainer = () => {
+  return document.documentElement || document.body;
+};
+
+const goToTop = () => {
+  document.body.scrollIntoView({
+    behavior: "smooth"
+  });
+};
+
+document.addEventListener("scroll", () => {
+  console.log("Scroll Height: ", scrollContainer().scrollHeight);
+  console.log("Client Height: ", scrollContainer().clientHeight);
+
+  const scrolledPercentage =
+    (scrollContainer().scrollTop /
+      (scrollContainer().scrollHeight - scrollContainer().clientHeight)) *
+    100;
+
+  pageProgressBar.style.width = `${scrolledPercentage}%`;
+
+  if (scrollContainer().scrollTop > showOnPx) {
+    backToTopButton.classList.remove("hidden");
+  } else {
+    backToTopButton.classList.add("hidden");
+  }
+});
+
+backToTopButton.addEventListener("click", goToTop);

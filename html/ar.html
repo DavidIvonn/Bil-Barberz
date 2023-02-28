@@ -1,8 +1,17 @@
 <div ng-include src="'./html/navigate.html'"></div>
 
-<div class="cards">
-    <div class="card mb-3 card-custom" ng-repeat="arak in ar track by $index">
-      {{arkontroller.ar}}
+<div class="row">
+  <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="stilus in stilusok">
+    <div class="card">
+      <img src="{{stilus.kep}}" class="card-img-top" alt="{{stilus.ar}}">
+      <div class="card-body">
+        <h5 class="card-title">{{stilus.megnev}}</h5>
+        <p class="card-text">{{stilus.leiras}}</p>
+        <a href="#" class="btn btn-primary">Buy now</a>
+      </div>
+    </div>
   </div>
+</div>
+
 
 <div ng-include src="'./html/footer.html'"></div>

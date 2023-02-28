@@ -2,7 +2,7 @@
   "name": "Árlista",
   "db": "barbershop",
   "tbl": "stilus",
-  "query": "SELECT `stilusid`, `name`,`leiras`,`kep`,`nem`,`ar` FROM `stilus` ORDER BY `id`",
+  "query": "SELECT `stilusid`, `megnev`,`leiras`,`kep`,`nem`,`ar` FROM `stilus` ORDER BY `id`",
   "label": [
     "Azonosító",
     "Név",

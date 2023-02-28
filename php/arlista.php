@@ -5,20 +5,20 @@ require('kapcs.php');
 $conn = dbkapcs();
 
 
-$sql = "SELECT * FROM stilus";
-$result = mysqli_query($conn, $sql);
+// Lekérdezés az adatbázisból
+$result = mysqli_query($conn, 'SELECT megnev,kep,leiras,ar FROM stilus');
 
-// Tároljuk az eredményt egy tömbben
-$cards = array();
-while($row = mysqli_fetch_assoc($result)) {
-  $cards[] = $row;
+// Az eredmény tömbbe rendezése
+$data = array();
+while ($row = mysqli_fetch_assoc($result)) {
+    $data[] = $row;
 }
 
-// Bezárjuk az adatbázis kapcsolatot
-mysqli_close($conn);
+// A tömb átalakítása JSON formátumra
+$json = json_encode($data);
 
-// Visszatérünk az eredményekkel
-echo json_encode($cards);
+// A JSON adatok küldése a kliensnek
+echo $json;
 
 
 ?>
