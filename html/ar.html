@@ -1,8 +1,11 @@
 <div ng-include src="'./html/navigate.html'"></div>
 
-<div class="cards">
-    <div class="card mb-3 card-custom" ng-repeat="arak in ar track by $index">
-      {{arkontroller.ar}}
-  </div>
+<div>
+  <ul>
+    <li ng-repeat="item in order | filter:filter">
+      {{item.megnev}}
+    </li>
+  </ul>
+</div>
 
 <div ng-include src="'./html/footer.html'"></div>
