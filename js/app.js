@@ -14,7 +14,10 @@
       $stateProvider
         .state('home', {
           url: '/',
-          templateUrl: './html/home.html'
+          templateUrl: './html/home.html',
+          styleUrls: ['./css/app.css'],
+          controller:'arkontroller'
+          
         })
         .state('blog', {
           url: '/blog',
@@ -27,7 +30,7 @@
         .state('ar', {
           url: '/ar',
           templateUrl: './html/ar.html',
-          controller:"arkontroller"
+          controller:'arkontroller'
 
         })
         .state('termek', {
