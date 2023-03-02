@@ -38,7 +38,10 @@
           url: '/nyeremeny',
           templateUrl: './html/nyeremeny.html'
         })
-        ;
+        .state('login', {
+          url: '/login',
+          templateUrl: './html/login.html'
+        });
       
       $urlRouterProvider.otherwise('/');
     }
