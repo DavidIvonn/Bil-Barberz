@@ -261,6 +261,24 @@ footer
 {
   object-position: right;
 }
+
+.ul
+{
+  list-style-type: none;
+}
+
+.li
+{text-align: center;}
+.nyerb
+{display: inline-block;
+  text-align: center;}
+
+  .button
+  {
+    background-color: #1C1C1C;
+    color: white;
+    border:none;
+  } 
 /*Időpontfoglalás*/
 ul{
   font-size: 22px;
@@ -283,4 +301,9 @@ label{
   background-color: #EEF0F2;
   font-size: 22px !important;
   border: solid 1px #1C1C1C;
+}
+
+.radio
+{
+  width: 60px;
 }
