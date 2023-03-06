@@ -319,3 +319,7 @@ input{
   background-color: #DADDD8;
 }
 
+.radio
+{
+  width: 60px;
+}
