@@ -280,3 +280,14 @@ ul{
   height: 400px;
  margin:0 auto;
 }
+
+/*Login*/
+label{
+  font-size: 27px !important;
+
+}
+.btn{
+  background-color: #EEF0F2;
+  border: 1px solid #1C1C1C;
+  font-size: 27px
+}
