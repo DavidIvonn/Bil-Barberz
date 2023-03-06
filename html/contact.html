@@ -1,4 +1,26 @@
 <div ng-include src="'./html/navigate.html'"></div>
+<html>
+<head>
+	<title>Időpontfoglalás űrlap</title>
+</head>
+<body>
+
+	<h1>Időpontfoglalás</h1>
+
+	<form method="post" action="./php/foglalas.php">
+		<label for="idopont">Válasszon időpontot:</label>
+		<input type="datetime-local" id="idopont" name="idopont">
+		<br><br>
+		<input type="submit" value="Foglalás">
+	</form>
+
+</body>
+</html>
+
+
+
+
+<!--
 <h1>Időpontfoglalás</h1>
 
     <div class="corner">
@@ -53,4 +75,5 @@
             <button type="submit" class="button btn">Foglalás</button>
         </div>    
 </div>
+-->
 <div ng-include src="'./html/footer.html'"></div>

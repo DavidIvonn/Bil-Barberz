@@ -1,0 +1,14 @@
+{
+  "name": "Árlista",
+  "db": "barbershop",
+  "tbl": "stilus",
+  "query": "SELECT `stilusid`, `megnev`,`leiras`,`kep`,`nem`,`ar` FROM `stilus` ORDER BY `id`",
+  "label": [
+    "Azonosító",
+    "Név",
+    "Leírás",
+    "Kép",
+    "Nem",
+    "Ár"
+  ]
+}

@@ -65,10 +65,6 @@ thead th {
   color: #000000;
 }
 
-tbody tr:hover {
-  background-color: rgba(182, 182, 182, 0.116);
-}
-
 @media (max-width: 767px) {
   table,
   thead,
@@ -147,8 +143,24 @@ h1 {
   outline: none;
   text-align: center;
 }
+h2 {
+  font-size: 60px;
+  text-transform: uppercase;
+  font-family: 'Gambetta', serif;
+  letter-spacing: -3px;
+  transition: 700ms ease;
+  font-variation-settings: "wght" 311;
+  margin-bottom: 0.8rem;
+  color: rgb(0, 0, 0);
+  outline: none;
+  text-align: center;
+}
 
 h1:hover {
+  font-variation-settings: "wght" 582; 
+  letter-spacing: 1px;
+}
+h2:hover {
   font-variation-settings: "wght" 582; 
   letter-spacing: 1px;
 }
@@ -156,6 +168,9 @@ h1:hover {
 @media (max-width: 767px) {
   h1 {
     font-size: 40px;
+  }
+  h2{
+    font-size: 22px;
   }
 }
 
@@ -227,6 +242,10 @@ h1:hover {
     flex-wrap: wrap;
   }
 }
+
+
+
+
 /*/Elérhetőségek*/
 footer
 {
@@ -260,3 +279,43 @@ footer
     color: white;
     border:none;
   } 
+/*Időpontfoglalás*/
+ul{
+  font-size: 22px;
+}
+.button{
+  background-color: #1c1c1c;
+  color: #d9d9d9;
+}
+/*Login*/
+input{
+  width: 300px;
+
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  
+
+}
+
+.form-field {
+  margin: 10px;
+  padding: 10px;
+  width: 700px;
+  height: 50px;
+  font-size: 30px;
+  margin: auto;
+}
+.buttons{
+  width: 300px;
+  height: 70px;
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+.logintd{
+  background-color: #DADDD8;
+}
+

@@ -38,7 +38,10 @@
           url: '/nyeremeny',
           templateUrl: './html/nyeremeny.html'
         })
-        ;
+        .state('login', {
+          url: '/login',
+          templateUrl: './html/login.html'
+        });
       
       $urlRouterProvider.otherwise('/');
     }
@@ -58,19 +61,12 @@
             isAssoc: true, 
           },
         })
-        .then((data) => {
-          $scope.order = data; 
-          $scope.$applyAsync(); 
-          $scope.filter = null; 
-          $scope.orderFilter = (event) => {
-            let element = event.currentTarget;
-            $scope.filter = element.id; 
-            $scope.$applyAsync(); 
-          };
+        .then(data => {
+          $scope.data = data;
+          $scope.$applyAsync();
         })
         .catch((e) => console.log(e)); 
     },
   ]);
   
 })(window, angular);
-
