@@ -1,53 +1,49 @@
 <?php
+  function connectPDO() {
+    $dbHandle = null;
+    try {
 
-// Require file
-require_once('../../../common/php/Database.php');
-
-//$_GET['data'] = '{"email":"odry.attila@keri.mako.hu","password":"1234Aa"}';
-
-//Regisztrációs oldal feldolgozása
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  $email = $_POST['email'];
-
-  // Jelszó hash-elése
-  $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-  // Felhasználó hozzáadása az adatbázishoz
-  $stmt = $pdo->prepare("INSERT INTO users (username, password, email, permission_level) VALUES (?, ?, ?, ?)");
-  $stmt->execute([$username, $password_hash, $email, 1]); // permission_level alapértelmezetten 1
-
-  // Sikeres regisztráció
-  header('Location: login.php');
-  exit();
-}
-//Bejelentkezési oldal feldolgozása
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-
-  // Felhasználó keresése az adatbázisban
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-  $stmt->execute([$username]);
-  $user = $stmt->fetch();
-
-  // Jelszó ellenőrzése
-  if ($user && password_verify($password, $user['password'])) {
-    // Sikeres bejelentkezés
-    session_start();
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['permission_level'] = $user['permission_level'];
-    header('Location: index.php');
-    exit();
-  } else {
-    // Sikertelen bejelentkezés
-    $error = 'Hibás felhasználónév vagy jelszó.';
+      $config 	= parse_ini_file("../db/config.ini", true);
+  
+      $dbHandle = new PDO("mysql:host={$config['host']};dbname={$config['dbname']};charset=utf8", 
+                          $config['user'], $config['pass'],
+        array(
+          PDO::MYSQL_ATTR_INIT_COMMAND        => "SET NAMES utf8",
+          PDO::MYSQL_ATTR_USE_BUFFERED_QUERY	=> false,
+          PDO::ATTR_ERRMODE 						      => PDO::ERRMODE_EXCEPTION,
+          PDO::ATTR_DEFAULT_FETCH_MODE        => PDO::FETCH_ASSOC,
+          PDO::ATTR_ORACLE_NULLS				      => PDO::NULL_EMPTY_STRING,
+          PDO::ATTR_EMULATE_PREPARES		      => false,
+          PDO::ATTR_STRINGIFY_FETCHES         => false
+        )
+      );
+    } catch (Exception $e) {
+      throw new Exception($e->getMessage());
+    }
+    return $dbHandle;
   }
-}
-session_start();
-if (!isset($_SESSION['user_id'])) {
-  header('Location: login.php');
-  exit();
-}
+$args = file_get_contents("php://input", true);
+
+$args = json_decode($args, true);
+
+$query = "SELECT * FROM user WHERE email = :email AND password = :password;";
+
+$dbHandle = connectPDO();
+
+$stmt = $dbHandle->prepare($query);
+
+$stmt->execute($args);
+
+$result = $stmt->fetchAll();
+
+$dbHandle = null;
+
+$args = json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+echo $args;
+
+
+
+
+
+?>

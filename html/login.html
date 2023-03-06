@@ -1,22 +1,25 @@
 <div ng-include src="'./html/navigate.html'"></div>
-<h2>Üdvözlünk újra az oldalon!</h2>
-<div class="container">
-	<table>
-		<tr class="form-field">
-	  		<td class="logintd"><label for="email">E-mail cím:</label></td>
-	  		<td class="logintd"><input type="text" id="username" name="username"></td>
-		</tr>
-		<tr class="form-field">
-	  		<td class="logintd"><label for="password">Jelszó:</label></td>
-	  		<td class="logintd"><input type="password" id="password" name="password"></td>
-		</tr>
-	</table>
-  	</div>
-  	<table class="mt-5 buttons">
-		<tr>
-			<td class="logintd"><button class="buttons">Bejelentkezés</button></td>
-			<td class="logintd"><a href="./register.html"><button class="buttons">Nincs még fiókom</button></a></td>
-		</tr>
-	</table>
+<h2 class="mt-5">Üdvözlünk újra az oldalon!</h2>
+<div class="container mt-5">
+	<div class="mb-3 row">
+		<label for="inputEmail" class="col-md-2 col-form-label">E-mail cím:</label>
+		<div class="col-md-10">
+		  <input type="email" class="form-control" id="email">
+		</div>
+	</div>
+	<div class="mb-3 row">
+		<label for="inputPassword" class="col-md-2 col-form-label">Jelszó:</label>
+		<div class="col-md-10">
+		  <input type="password" class="form-control" id="jelszo">
+		</div>
+	</div>
+	<div class="text-center mt-5">
+		<button type="button" class="btn">Bejelentkezés</button>
+		<button type="button" class="btn">Nincs még fiókom</button>
+	</div>
+
+</div>
+	
+
 
 <div ng-include src="'./html/footer.html'"></div>
