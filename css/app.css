@@ -104,10 +104,6 @@ thead th {
   color: #000000;
 }
 
-tbody tr:hover {
-  background-color: rgba(182, 182, 182, 0.116);
-}
-
 @media (max-width: 767px) {
   table,
   thead,
@@ -248,6 +244,24 @@ footer
 {
   object-position: right;
 }
+
+.ul
+{
+  list-style-type: none;
+}
+
+.li
+{text-align: center;}
+.nyerb
+{display: inline-block;
+  text-align: center;}
+
+  .button
+  {
+    background-color: #1C1C1C;
+    color: white;
+    border:none;
+  } 
 /*Időpontfoglalás*/
 ul{
   font-size: 22px;
