@@ -1,59 +1,19 @@
-  <nav class="navbar navbar-expand-lg navbar-light ">
-    <!-- Container wrapper -->
-    <div class="container-fluid">
-      <!-- Toggle button -->
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarCenteredExample"
-        aria-controls="navbarCenteredExample"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
+      
   
-      <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse justify-content-center"
-           id="navbarCenteredExample"
-      >
         <!-- Left links -->
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" ui-sref="home">Kezdőlap</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" ui-sref="blog">Rólunk</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" ui-sref="contact">Időpontfoglalás</a>
-          </li>
-          <li class="nav-item">
-            <img src="./img/logo-sotet.svg" alt="logo" title="logo">
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" ui-sref="ar">Árlista</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" ui-sref="termek">Termékek</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" ui-sref="nyeremeny">Nyereményjáték</a>
-          </li>
-          </ul>
-        <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" ui-sref="login">Bejelentkezés</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" ui-sref="register">Regisztráció</a>
-          </li>
-        </ul>
-        
-        <!-- Left links -->
-      </div>
-      <!-- Collapsible wrapper -->
-    </div>
-    <!-- Container wrapper -->
-  </nav>
+        <div class="topnav" id="myTopnav">
+          <a href="./html/home.html" class="active" ui-sref="home"><img src="./img/logo-vilagos.png" height="40" alt=""></a>
+          <a href="./html/rolunk.html" ui-sref="rolunk">Rólunk</a>
+          <a href="./html/ar.html" ui-sref="arlista">Árlista</a>
+          <a href="./html/foglalas.html" ui-sref="foglalas">Időpontfoglalás</a>
+          <a href="./html/termek.html" ui-sref="termekek">Teremékek</a>
+          <a href="./html/nyeremeny.html" ui-sref="nyeremeny">Nyereményjáték</a>
+          <a href="./html/login.html" ui-sref="login">Bejelentkezés</a>
+          <a href="./html/register.html" ui-sref="register">Regisztráció</a>
+          <a href="javascript:void(0);" class="icon" onclick="nav()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+     
+
+ 

@@ -1,4 +1,25 @@
 <div ng-include src="'./html/navigate.html'"></div>
 <div class="main">
+
+    <div class="col">
+        <div class="row">
+          <div class=""  ng-repeat="termekek in data track by $index">
+            <div class="card my-5 termekek" style="margin:0 auto;display: inline-block;">
+              <img src="./img/{{termekek.termekkep}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{termekek.megnev}}</h5>
+                <p class="card-text" style="color: black; font-size:17px;">{{termekek.leiras}}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">{{termekek.ar}} Ft</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
     </div>
 <div ng-include src="'./html/footer.html'"></div>

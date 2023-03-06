@@ -16,23 +16,24 @@
           url: '/',
           templateUrl: './html/home.html'
         })
-        .state('blog', {
-          url: '/blog',
-          templateUrl: './html/blog.html'
+        .state('rolunk', {
+          url: '/rolunk',
+          templateUrl: './html/rolunk.html'
         })
-        .state('contact', {
-          url: '/contact',
-          templateUrl: './html/contact.html'
+        .state('foglalas', {
+          url: '/foglalas',
+          templateUrl: './html/foglalas.html'
         })
-        .state('ar', {
-          url: '/ar',
+        .state('arlista', {
+          url: '/arlista',
           templateUrl: './html/ar.html',
           controller:"arkontroller"
 
         })
-        .state('termek', {
-          url: '/termek',
-          templateUrl: './html/termek.html'
+        .state('termekek', {
+          url: '/termekek',
+          templateUrl: './html/termek.html',
+          controller:"termekkontroller"
         })
         .state('nyeremeny', {
           url: '/nyeremeny',
@@ -42,7 +43,10 @@
       
       $urlRouterProvider.otherwise('/');
     }
+
+    
   ])
+  
 
   .controller("arkontroller", [
     "$scope", 
@@ -64,6 +68,40 @@
         })
         .catch((e) => console.log(e)); 
     },
+  ]) 
+
+  .controller("termekkontroller", [
+    "$scope", 
+    "http", 
+    function ($scope, http) {
+      http
+        .request({
+          url: "./php/get.php", 
+          method: "POST", 
+          data: {
+            db: "barbershop",
+            query: "SELECT * FROM `termekek`", 
+            isAssoc: true, 
+          },
+        })
+        .then(data => {
+          $scope.data = data;
+          $scope.$applyAsync();
+        })
+        .catch((e) => console.log(e)); 
+    },
   ]);
   
+
+  
+  
 })(window, angular);
+
+function nav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
