@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 01. 14:13
+-- Létrehozás ideje: 2023. Már 07. 14:11
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -33,6 +33,7 @@ CREATE TABLE `felhasznalok` (
   `nev` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `telszam` tinyint(11) NOT NULL,
   `email` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
+  `jelszo` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `lakcim` varchar(100) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
