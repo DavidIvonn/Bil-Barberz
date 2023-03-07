@@ -42,6 +42,10 @@
         .state('login', {
           url: '/login',
           templateUrl: './html/login.html'
+        })
+        .state('register', {
+          url: '/register',
+          templateUrl: './html/register.html'
         });
       
       $urlRouterProvider.otherwise('/');
