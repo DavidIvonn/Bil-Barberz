@@ -45,7 +45,8 @@
         })
         .state('register', {
           url: '/register',
-          templateUrl: './html/register.html'
+          templateUrl: './html/register.html',
+          controller:"registerController"
         });
       
       $urlRouterProvider.otherwise('/');
@@ -54,7 +55,7 @@
     
   ])
   
-
+  //
   .controller("arkontroller", [
     "$scope", 
     "http", 
@@ -74,7 +75,7 @@
           $scope.$applyAsync();
         })
         .catch((e) => console.log(e)); 
-    },
+    }
   ]) 
 
   .controller("termekkontroller", [
@@ -96,7 +97,33 @@
           $scope.$applyAsync();
         })
         .catch((e) => console.log(e)); 
-    },
+    }
+  ])
+
+  // Registration
+  .controller("registerController", [
+    "$scope", 
+    "http", 
+    function ($scope, http) {
+      $scope.model =  {
+        nev: null,
+        telszam: null,
+        email: null,
+        jelszo: null,
+        lakcim: null
+      };
+
+      $scope.register = function () {
+        http.request({
+          url: "./php/register.php", 
+          method: "POST", 
+          data: $scope.model
+        })
+        .then(data => {
+          console.log(data);
+        })
+      }
+    }
   ]);
   
 
