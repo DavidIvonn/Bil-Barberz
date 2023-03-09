@@ -1,12 +1,15 @@
 <div ng-include src="'./html/navigate.html'"></div>
 
+<div class="header">
+  <h2>Árlista</h2>
+</div>
 
-
-  <div class="col">
-    <div class="row">
+<div class="row">
+  <div class="column">
+   
       <div class=""  ng-repeat="stilus in data track by $index">
         <div class="card my-5" style="margin:0 auto;display: inline-block;">
-          <img src="./img/{{stilus.kep}}" class="card-img-top" alt="...">
+          <img src="./img/{{stilus.kep}}" class="img-fluid" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{stilus.megnev}}</h5>
             <p class="card-text" style="color: black; font-size:17px;">{{stilus.leiras}}</p>
@@ -16,6 +19,16 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <div class="col">
+    <div class="row">
+    
     </div>
   </div>
 </div>
