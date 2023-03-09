@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 01. 14:13
+-- Létrehozás ideje: 2023. Már 08. 15:39
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -31,8 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `felhasznalok` (
   `felhaszid` smallint(10) NOT NULL,
   `nev` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
-  `telszam` tinyint(11) NOT NULL,
+  `telszam` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
+  `jelszo` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `lakcim` varchar(100) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
@@ -180,7 +181,8 @@ INSERT INTO `termekek` (`termekid`, `megnev`, `leiras`, `termekkep`, `ar`) VALUE
 -- A tábla indexei `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  ADD PRIMARY KEY (`felhaszid`);
+  ADD PRIMARY KEY (`felhaszid`),
+  ADD UNIQUE KEY `EMAIL` (`email`);
 
 --
 -- A tábla indexei `idopontfoglalas`

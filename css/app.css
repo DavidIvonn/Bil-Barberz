@@ -307,6 +307,10 @@ h4{
 .footer {
   padding: 40px 0;
   background-color: #333;
+  position: relative;
+  left: 0;
+  bottom: 0;
+   width:100%;
 }
 .footer .social {
   text-align: center;
