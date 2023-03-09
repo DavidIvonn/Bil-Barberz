@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@1,200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 body {
   overflow-x: hidden;
   background-color: #DADDD8;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Comfortaa', cursive;
+ 
 }
 /*menu*/
 .topnav {
@@ -170,53 +170,118 @@ thead th {
 
 /*cím*/
 
-h1 {
-  font-size: 120px;
-  text-transform: uppercase;
-  font-family: 'Gambetta', serif;
-  letter-spacing: -3px;
-  transition: 700ms ease;
-  font-variation-settings: "wght" 311;
-  margin-bottom: 0.8rem;
-  color: rgb(0, 0, 0);
-  outline: none;
-  text-align: center;
-}
-h2 {
-  font-size: 60px;
-  text-transform: uppercase;
-  font-family: 'Gambetta', serif;
-  letter-spacing: -3px;
-  transition: 700ms ease;
-  font-variation-settings: "wght" 311;
-  margin-bottom: 0.8rem;
-  color: rgb(0, 0, 0);
-  outline: none;
+h2{
+  font-size: 40px;
   text-align: center;
 }
 
-h1:hover {
-  font-variation-settings: "wght" 582; 
-  letter-spacing: 1px;
-}
-h2:hover {
-  font-variation-settings: "wght" 582; 
-  letter-spacing: 1px;
-}
-
-@media (max-width: 767px) {
-  h1 {
-    font-size: 40px;
-  }
-  h2{
-    font-size: 22px;
-  }
+h1{
+  text-align: center;
 }
 
 /*/cím*/
 
-/*Borbéylok*/
-/*/Borbéylok*/
+/*rolunk*/
+.borbely{
+  border-radius: 10%;
+}
+.eredmenyek{
+  list-style: url('../img/icon/trophy.svg');
+  
+}
+
+.location{
+
+border-radius: 30px 30px 30px 30px;
+box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background-color:rgba(145, 143, 143, 0.377);
+}
+h5{
+  text-align: center;
+}
+
+h4{
+  text-align: center;
+  margin-top: 7px;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 70%;
+}
+
+
+.rightcolumn {
+  float: right;
+  width: 27%;
+  padding-left: 20px;
+}
+
+
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+.borbelycard{
+  background-color:rgba(0, 0, 0, 0.74);
+  padding: 20px;
+  margin-top: 20px;
+  color: rgb(158, 158, 158);
+  border-radius: 18px 18px 18px 18px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.eredmenycard{
+  background-color:rgba(94, 11, 11, 0.267);
+  padding: 20px;
+  margin-top: 20px;
+  width: 500px;
+}
+.rolunkcard{
+  background-color:rgba(80, 123, 163, 0.377);
+  padding: 20px;
+  margin-top: 20px;
+  width: 500px;
+}
+
+.focard {
+   
+   padding: 20px;
+   margin-top: 20px;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+/*/rolunk*/
 
 
 /*Elérhetőségek*/
@@ -300,6 +365,8 @@ h2:hover {
 }
 
   /*/lablec*/
+
+  
 /*Időpontfoglalás*/
 ul{
   font-size: 22px;
@@ -335,3 +402,7 @@ label{
   font-size: 27px;
   font-weight: bolder;
 }
+
+/*arlista*/
+
+/* /arlista/
