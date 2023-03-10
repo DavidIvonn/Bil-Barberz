@@ -104,7 +104,8 @@
   .controller("registerController", [
     "$scope", 
     "http", 
-    function ($scope, http) {
+    "$state",
+    function ($scope, http, $state) {
       $scope.model =  {
         nev: null,
         telszam: null,
@@ -120,8 +121,11 @@
           data: $scope.model
         })
         .then(data => {
-          console.log(data);
+          
         })
+      }
+      $scope.dismiss = function () {
+        $state.go("login");
       }
     }
   ]);

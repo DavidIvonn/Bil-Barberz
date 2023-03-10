@@ -1,5 +1,7 @@
 <div ng-include src="'./html/navigate.html'"></div>
-<h2 class="mt-5">Hozzd létre saját fiókod és könnyítsd meg rendelésed vagy időpontfoglalásod oldalunkon!</h2>
+<div>
+<h2 class="mt-5">Hozd létre saját fiókod és könnyítsd meg rendelésed vagy időpontfoglalásod oldalunkon!</h2>
+</div>
 <div class="container mt-5">
 	<div class="mb-3 row">
     <label for="inputName" class="col-md-2 col-form-label">Név:</label>
@@ -32,11 +34,39 @@
 		</div>
 	</div>
 	<div class="text-center mt-5">
-		<button type="button" class="btn" ng-click="register()">Regisztrálok</button>
-		<button type="button" class="btn">Már van fiókom</button>
+		<button type="button" class="btn" ng-click="register()" data-bs-toggle="modal" data-bs-target="#Register">Regisztrálok</button>
+		<button type="button" class="btn" ui-sref="login">Már van fiókom</button>
 	</div>
 
 </div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="Register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="staticBackdropLabel">Sikeres regisztráció!</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<p>Kedves Felhasználó!</p>
+
+			<p>Köszönjük, hogy regisztráltál oldalunkra! Örömmel jelentjük be, hogy a regisztrációd sikeres volt, és mostantól hozzáférhetsz az összes szolgáltatásunkhoz.</p>
+			
+			<p>Ha bármilyen kérdésed vagy problémád van, vedd fel velünk a kapcsolatot az bilbarberz@gmail.com e-mail címen vagy a +36 30 229 5864 telefonszámon.</p>
+			
+			<p>Köszönjük, hogy csatlakoztál hozzánk! Nagyon várjuk, hogy élvezd szolgáltatásainkat!
+			
+			<p>Üdvözlettel,
+			Az BIL Barberz csapata</p>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn" data-bs-dismiss="modal" ng-click="dismiss()">Bezárás</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 
 <div ng-include src="'./html/footer.html'"></div>
