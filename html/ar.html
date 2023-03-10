@@ -4,40 +4,40 @@
   <h2>Árlista</h2>
 </div>
 
-<div class="row">
-  <div class="column">
-   
-      <div class=""  ng-repeat="stilus in data track by $index">
-        <div class="card my-5" style="margin:0 auto;display: inline-block;">
-          <img src="./img/{{stilus.kep}}" class="img-fluid" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{stilus.megnev}}</h5>
-            <p class="card-text" style="color: black; font-size:17px;">{{stilus.leiras}}</p>
+<div class="container-fluid">
+  <div class="row my-5">
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4" ng-repeat="stilus in data track by $index">
+      <div class="card arlista">
+        <img class="card-img-top arkep" src="./img/{{stilus.kep}}" alt="..." />
+        <div class="card-body p-1">
+          <div class="text-center">
+            <h5 class="fw-bolder">{{stilus.megnev}}</h5>
+            {{stilus.ar}} Ft
           </div>
-          <div class="card-footer">
-            <small class="text-muted">{{stilus.ar}} Ft</small>
+          <button type="button" class="btn btn-secondary leirasgomb" data-bs-toggle="modal" data-bs-target="#modal{{ $index }}">
+            Leírás
+          </button>
+          <div class="modal fade" id="modal{{ $index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">{{stilus.megnev}}</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="text-align:justify;">
+                  {{stilus.leiras}}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary leirasgomb"  data-bs-dismiss="modal">Bezárás</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-  <div class="col">
-    <div class="row">
-    
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
 
 
 <div ng-include src="'./html/footer.html'"></div>
