@@ -100,7 +100,6 @@
     }
   ])
 
-  // Registration
   .controller("registerController", [
     "$scope", 
     "http", 
@@ -113,22 +112,68 @@
         jelszo: null,
         lakcim: null
       };
-
+  
       $scope.register = function () {
-        http.request({
-          url: "./php/register.php", 
-          method: "POST", 
-          data: $scope.model
-        })
-        .then(data => {
+        // Űrlap validáció
+        $scope.register = function () {
+          // Form validation
+          if (!$scope.model.nev || !$scope.model.email || !$scope.model.telszam || !$scope.model.jelszo || !$scope.model.lakcim) {
+            // Failed validation - show error message
+            $("#sikertelen .modal-body").text("Kérjük, töltse ki az összes mezőt!");
+            $("#sikertelen").modal("show");
+            return;
+          }
+    
+          // Email and phone number validation
+          if (!validateEmail($scope.model.email)) {
+            $("#sikertelen .modal-body").text("Kérjük, adjon meg egy érvényes email címet!");
+            $("#sikertelen").modal("show");
+            return;
+          }
+          if (!validatePhoneNumber($scope.model.telszam)) {
+            $("#sikertelen .modal-body").text("Kérjük, adjon meg egy érvényes telefonszámot!");
+            $("#sikertelen").modal("show");
+            return;
+            }
+            http.request({
+              url: "./php/register.php", 
+              method: "POST", 
+              data: $scope.model
+            })
+            .then(data => {
+              if (data && data.error) {
+                // If email already exists, show error message
+                $("#sikertelen .modal-body").text("Hiba: Már létezik ilyen felhasználó ezzel az e-mail címmel!");
+                $("#sikertelen").modal("show");
+              } else {
+                // Registration successful - show success message and navigate to login page
+                $("#siker").modal("show");
+                $state.go("login");
+              }
+            })
+            .catch(error => {
+              // Registration failed - show error message
+              $("#sikertelen .modal-body").text("Hiba: Már létezik ilyen felhasználó ezzel az e-mail címmel!");
+              $("#sikertelen").modal("show");
+            });
+          };
           
-        })
-      }
-      $scope.dismiss = function () {
-        $state.go("login");
-      }
+          // Email validation function
+          function validateEmail(email) {
+            const emailRegex = /\S+@\S+\.\S+/;
+            return emailRegex.test(email);
+          }
+          
+          // Phone number validation function
+          function validatePhoneNumber(phoneNumber) {
+            const phoneRegex = /^\+?\d{8,}$/;
+            return phoneRegex.test(phoneNumber);
+          }
+      };
     }
   ]);
+  
+  
   
 
   
