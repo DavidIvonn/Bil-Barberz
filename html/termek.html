@@ -1,22 +1,31 @@
 <div ng-include src="'./html/navigate.html'"></div>
 <div class="main">
 
-    <div class="col">
-        <div class="row">
-          <div class=""  ng-repeat="termekek in data track by $index">
-            <div class="card my-5 termekek" style="margin:0 auto;display: inline-block;">
-              <img src="./img/{{termekek.termekkep}}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{termekek.megnev}}</h5>
-                <p class="card-text" style="color: black; font-size:17px;">{{termekek.leiras}}</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">{{termekek.ar}} Ft</small>
-              </div>
+    
+  <div class="container-fluid">
+    <div class="row my-5">
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4" ng-repeat="termekek in data track by $index">
+        <div class="card arlista">
+          <img class="card-img-top arkep" src="./img/{{termekek.termekkep}}" alt="..." />
+          <div class="card-body p-1">
+            <div class="text-center">
+              <h5 class="fw-bolder">{{termekek.megnev}}</h5>
+              {{termekek.ar}} Ft
             </div>
+        
+         
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
     </div>
     
 
