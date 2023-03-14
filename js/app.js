@@ -41,7 +41,8 @@
         })
         .state('login', {
           url: '/login',
-          templateUrl: './html/login.html'
+          templateUrl: './html/login.html',
+          controller:"loginController"
         })
         .state('register', {
           url: '/register',
@@ -113,68 +114,96 @@
         lakcim: null
       };
   
+      // Űrlap validáció
       $scope.register = function () {
-        // Űrlap validáció
-        $scope.register = function () {
-          // Form validation
-          if (!$scope.model.nev || !$scope.model.email || !$scope.model.telszam || !$scope.model.jelszo || !$scope.model.lakcim) {
-            // Failed validation - show error message
-            $("#sikertelen .modal-body").text("Kérjük, töltse ki az összes mezőt!");
-            $("#sikertelen").modal("show");
-            return;
-          }
+
+        // Form validation
+        if (!$scope.model.nev || !$scope.model.email || !$scope.model.telszam || !$scope.model.jelszo || !$scope.model.lakcim) {
+          // Failed validation - show error message
+          $("#sikertelen .modal-body").text("Kérjük, töltse ki az összes mezőt!");
+          $("#sikertelen").modal("show");
+          return;
+        }
     
-          // Email and phone number validation
-          if (!validateEmail($scope.model.email)) {
-            $("#sikertelen .modal-body").text("Kérjük, adjon meg egy érvényes email címet!");
+        // Email and phone number validation
+        if (!validateEmail($scope.model.email)) {
+          $("#sikertelen .modal-body").text("Kérjük, adjon meg egy érvényes email címet!");
+          $("#sikertelen").modal("show");
+          return;
+        }
+
+        if (!validatePhoneNumber($scope.model.telszam)) {
+          $("#sikertelen .modal-body").text("Kérjük, adjon meg egy érvényes telefonszámot!");
+          $("#sikertelen").modal("show");
+          return;
+        }
+
+        http.request({
+          url: "./php/register.php", 
+          method: "POST", 
+          data: $scope.model
+        })
+        .then(data => {
+          if (data && data.error) {
+            // If email already exists, show error message
+            $("#sikertelen .modal-body").text("Hiba: Már létezik ilyen felhasználó ezzel az e-mail címmel!");
             $("#sikertelen").modal("show");
-            return;
+          } else {
+            // Registration successful - show success message and navigate to login page
+            $("#siker").modal("show");
+            $state.go("login");
           }
-          if (!validatePhoneNumber($scope.model.telszam)) {
-            $("#sikertelen .modal-body").text("Kérjük, adjon meg egy érvényes telefonszámot!");
-            $("#sikertelen").modal("show");
-            return;
-            }
-            http.request({
-              url: "./php/register.php", 
-              method: "POST", 
-              data: $scope.model
-            })
-            .then(data => {
-              if (data && data.error) {
-                // If email already exists, show error message
-                $("#sikertelen .modal-body").text("Hiba: Már létezik ilyen felhasználó ezzel az e-mail címmel!");
-                $("#sikertelen").modal("show");
-              } else {
-                // Registration successful - show success message and navigate to login page
-                $("#siker").modal("show");
-                $state.go("login");
-              }
-            })
-            .catch(error => {
-              // Registration failed - show error message
-              $("#sikertelen .modal-body").text("Hiba: Már létezik ilyen felhasználó ezzel az e-mail címmel!");
-              $("#sikertelen").modal("show");
-            });
-          };
-          
-          // Email validation function
-          function validateEmail(email) {
-            const emailRegex = /\S+@\S+\.\S+/;
-            return emailRegex.test(email);
-          }
-          
-          // Phone number validation function
-          function validatePhoneNumber(phoneNumber) {
-            const phoneRegex = /^\+?\d{8,}$/;
-            return phoneRegex.test(phoneNumber);
-          }
+        })
+        .catch(error => {
+          // Registration failed - show error message
+          $("#sikertelen .modal-body").text(error);
+          $("#sikertelen").modal("show");
+        });
+      };
+        
+      // Email validation function
+      function validateEmail(email) {
+        const emailRegex = /\S+@\S+\.\S+/;
+        return emailRegex.test(email);
+      }
+      
+      // Phone number validation function
+      function validatePhoneNumber(phoneNumber) {
+        const phoneRegex = /^\+?\d{8,}$/;
+        return phoneRegex.test(phoneNumber);
+      }
+    }
+  ])
+  
+  
+  //
+  .controller("loginController", [
+    "$scope", 
+    "http", 
+    function ($scope, http) {
+
+      $scope.model =  {
+        email: null,
+        jelszo: null
+      };
+
+      $scope.login = function() {
+        http
+          .request({
+            url: "./php/login.php", 
+            method: "POST", 
+            data: $scope.model
+          })
+          .then(data => {
+            $scope.data = data;
+            $scope.$applyAsync();
+          })
+          .catch((e) => {
+            console.log(e)
+          });
       };
     }
   ]);
-  
-  
-  
 
   
   
