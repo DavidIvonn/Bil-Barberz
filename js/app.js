@@ -195,8 +195,18 @@
             data: $scope.model
           })
           .then(data => {
-            $scope.data = data;
-            $scope.$applyAsync();
+            if (data.length) {
+              $scope.data = data[0];
+              $scope.$applyAsync();
+            } else {
+              $scope.model =  {
+                email: null,
+                jelszo: null
+              };
+              $scope.data = null;
+              $scope.$applyAsync();
+              alert("Hibás felhasználló, vagy jelszó!");
+            }
           })
           .catch((e) => {
             console.log(e)
