@@ -205,7 +205,7 @@
               };
               $scope.data = null;
               $scope.$applyAsync();
-              alert("Hibás felhasználló, vagy jelszó!");
+              $("#sikertelenbejentkez").modal("show");
             }
           })
           .catch((e) => {

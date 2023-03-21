@@ -1,6 +1,7 @@
 <div ng-include src="'./html/navigate.html'"></div>
 <h2 class="mt-5">Üdvözlünk újra az oldalon!</h2>
 <div class="container mt-5">
+	<h1>{{data.nev}}</h1>
 	<div class="mb-3 row">
 		<label for="inputEmail" class="col-md-2 col-form-label">E-mail cím:</label>
 		<div class="col-md-10">
@@ -17,6 +18,22 @@
 		<button type="button" class="btn" ng-click="login()">Bejelentkezés</button>
 		<button type="button" class="btn" ui-sref="register">Nincs még fiókom</button>
 	</div>
-	<h1>{{data.nev}}</h1>
+</div>
+<div class="modal fade" id="sikertelenbejentkez" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+	aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="sikertelenbejentkez">Sikertelen Bejelentkezés!</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>Hibás felhasználónév vagy jelszó!</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-bs-dismiss="modal" ng-click="dismiss()">Bezárás</button>
+			</div>
+		</div>
+	</div>
 </div>
 <div ng-include src="'./html/footer.html'"></div>
