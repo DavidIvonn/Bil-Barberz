@@ -1,15 +1,17 @@
       
   
         <!-- Left links -->
-        <div class="topnav" id="myTopnav">
-          <a href="./html/home.html" class="active" ui-sref="home"><img src="./img/logo-vilagos.png" height="40" alt=""></a>
-          <a href="./html/rolunk.html" ui-sref="rolunk">Rólunk</a>
-          <a href="./html/ar.html" ui-sref="arlista">Árlista</a>
-          <a href="./html/foglalas.html" ui-sref="foglalas">Időpontfoglalás</a>
-          <a href="./html/termek.html" ui-sref="termekek">Teremékek</a>
-          <a href="./html/nyeremeny.html" ui-sref="nyeremeny">Nyereményjáték</a>
-          <a href="./html/login.html" ui-sref="login">Bejelentkezés</a>
-          <a href="./html/register.html" ui-sref="register">Regisztráció</a>
+        <div class="topnav" id="myTopnav" controller="loginController">
+          <a class="active" ui-sref="home"><img src="./img/logo-vilagos.png" height="40" alt=""></a>
+          <a ui-sref="rolunk">Rólunk</a>
+          <a ui-sref="arlista">Árlista</a>
+          <a ui-sref="foglalas">Időpontfoglalás</a>
+          <a ui-sref="termekek">Teremékek</a>
+          <a ui-sref="nyeremeny">Nyereményjáték</a>
+          <a ui-sref="login" ng-show="!bejelentkezve">Bejelentkezés</a>
+          <a ui-sref="register" ng-show="!bejelentkezve">Regisztráció</a>
+          <a ng-show="bejelentkezve" ng-click="kijelentkezes()">Kijelentkezés</a>
+          <h1 class="loginnav">{{data.nev}}</h1>
           <a href="javascript:void(0);" class="icon" onclick="nav()">
             <i class="fa fa-bars"></i>
           </a>
