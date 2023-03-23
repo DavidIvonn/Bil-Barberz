@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 08. 15:39
+-- Létrehozás ideje: 2023. Már 23. 11:37
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `felhasznalok` (
   `felhaszid` smallint(10) NOT NULL,
   `nev` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
-  `telszam` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
+  `telszam` tinyint(11) NOT NULL,
   `email` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `jelszo` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `lakcim` varchar(100) COLLATE utf8_hungarian_ci NOT NULL
@@ -141,7 +141,7 @@ INSERT INTO `stilus` (`stilusid`, `megnev`, `leiras`, `kep`, `nem`, `ar`) VALUES
 (14, 'Garibaldi', 'A Garibaldi szakállnak jellemzője a sima, egyenletes forma és a tökéletesen vágott vonalak. Ennek a szakálltípusnak a hossza lehetővé teszi a férfiak számára, hogy kreatív módon stílust alkossanak, és kifejezzék személyiségüket.', 'garibaldi.jpg', 'Férfi', 4300),
 (15, 'Imperial fazon', 'Az imperial fazon egy hosszú, szabályos szakállforma, amely az álltól a bajuszig nyúlik. Az imperial fazon szép megjelenést kölcsönöz a férfiaknak, és nagyon jól mutat a klasszikus,  elegáns stílust követő férfiaknál.', 'imperialfazon.jpg', 'Férfi', 4700),
 (16, 'Bandholz', 'A Bandholz szakáll egy rendkívül hosszú, kiemelkedő szakálltípus, amely az álltól a mellkasig nyúlik. A Bandholz szakáll nagyon jól mutat a bátor, merész férfiaknál, akik szeretik kifejezni személyiségüket a szakálluk által.', 'bandholz.jpg', 'Férfi', 3800),
-(17, 'Átmeneti szakáll', 'Az átmeneti szakáll jellemzője a fokozatos átmenet a rövid szakállról a hosszabbra, ami nagyon természetesnek tűnik. Az átmeneti szakáll egy nagyon praktikus és stílusos megoldás lehet a férfiak számára.', 'atmenetesszakáll.jpg', 'Férfi', 6000);
+(17, 'Átmeneti szakáll', 'Az átmeneti szakáll jellemzője a fokozatos átmenet a rövid szakállról a hosszabbra, ami nagyon természetesnek tűnik. Az átmeneti szakáll egy nagyon praktikus és stílusos megoldás lehet a férfiak számára.', 'atmenetesszakall.jpg', 'Férfi', 6000);
 
 -- --------------------------------------------------------
 
@@ -165,13 +165,19 @@ INSERT INTO `termekek` (`termekid`, `megnev`, `leiras`, `termekkep`, `ar`) VALUE
 (1, 'Férfi hajbalzsam (barackos)', 'Intenzíven tápláló hajbalzsam\r\nTökéletes a száraz, szálló haj ápolására\r\nA tövektől a hajvégekig gondoskodik a hajról\r\nA haj selymesebb, simább és kevésbé száll használatát követően\r\nEllenállhatatlan ', 'balzsambarack.jpg', 3000),
 (2, 'Férfi hajbalzsam (citromos)', 'Intenzíven tápláló hajbalzsam\r\nTökéletes a száraz, szálló haj ápolására\r\nA tövektől a hajvégekig gondoskodik a hajról\r\nA haj selymesebb, simább és kevésbé száll használatát követően\r\nEllenállhatatlan ', 'balzsamcitrom.jpg', 3000),
 (3, 'Férfi hajbalzsam (kókusz és macadámia)', 'Intenzíven tápláló hajbalzsam\r\nTökéletes a száraz, szálló haj ápolására\r\nA tövektől a hajvégekig gondoskodik a hajról\r\nA haj selymesebb, simább és kevésbé száll használatát követően\r\nEllenállhatatlan ', 'balzsamkokusz.jpg', 3000),
-(4, 'Barber Gen Detox Ferfi sampon', 'A kiváló Barber Gen Detox sampon hatékonyan tisztítja a fejbőrt és a hajat, és visszaadja a haj természetes szépségét.', 'gendetox_ferfisampon', 4000),
-(5, 'Barber Gen Fortifying Ferfi sampon', 'Erősítő sampon a gyenge, hullásra hajlamos hajra', 'genfortifying_ferfis', 4000),
-(6, 'Barber Gen Rebalacing Ferfi sampon', 'Hajsampon kifejezetten zsíros/zsíros fejbőrre. A hajat puhává és kezelhetővé teszi.', 'genrebalance_ferfisa', 4000),
+(4, 'Barber Gen Detox Ferfi sampon', 'A kiváló Barber Gen Detox sampon hatékonyan tisztítja a fejbőrt és a hajat, és visszaadja a haj természetes szépségét.', 'gendetox.jpg', 4000),
+(5, 'Barber Gen Fortifying Ferfi sampon', 'Erősítő sampon a gyenge, hullásra hajlamos hajra', 'genfortifying.jpg', 4000),
+(6, 'Barber Gen Rebalacing Ferfi sampon', 'Hajsampon kifejezetten zsíros/zsíros fejbőrre. A hajat puhává és kezelhetővé teszi.', 'genrebalance.jpg', 4000),
 (7, 'Eco Professional Hajkiegyenesítő Női sampon', 'Gyengéden tisztít, és azonnal megszünteti a seprűs hatást, miközben a hajat lágyan áramlóvá és könnyen kezelhetővé teszi.', 'noisampon.png', 4500),
 (8, 'Szakállápoló Gél Érzékeny bőrre', 'Szőrzetpuhító hatóanyaga révén bársonyosan puha tapintású szakállt eredményez. Minden szakállhosszra alkalmazható, még borostára is. Gyorsan felszívódik, nem zsírosít. Csökkenti a viszketést és a bőrf', 'szakallgelerz.jpg', 3500),
 (9, 'Szakállápoló Gél Normál bőrre', 'Panthenol és hialuronsav tartalma extra adag hidratálást biztosít a szakállnak és a férfibőrnek egyaránt. A könnyed állagú hidrogél kiegészítő ápolószerként vagy a szakállápoló olaj alternatívájaként ', 'szakallgelnorm.jpg', 3500),
-(10, 'Grave Before Shave Szakáll sampon', 'A Grave Before Shave szakáll sampon segít az arcszőrzet hatékony, alapos, mégis kíméletes tisztításában. Könnyen adagolható, eltávolítja a szennyeződéseket, és a felesleges faggyút, így ideális válasz', 'szakallsampon.jpg', 3600);
+(10, 'Grave Before Shave Szakáll sampon', 'A Grave Before Shave szakáll sampon segít az arcszőrzet hatékony, alapos, mégis kíméletes tisztításában. Könnyen adagolható, eltávolítja a szennyeződéseket, és a felesleges faggyút, így ideális válasz', 'szakallsampon.jpg', 3600),
+(11, 'BIL Hajvágó Olló', 'A pengék élesek és precízek, hogy pontosan és egyenletesen vágják a hajat. A markolatok ergonomikus kialakításúak, hogy kényelmesen és biztonságosan tartsák a kézben az ollót.', 'ollo.jpg', 2300),
+(12, 'Szalon Szék', 'Az antik stílusú szék kiváló minőségű anyagokból készült, és hosszú élettartammal rendelkezik.', 'salonchair.jpg', 15000),
+(13, 'BIL Penge Kés', 'Ideális a professzionális borotválkozáshoz. Kiváló minőségű anyagokból készült, éles penge, és kényelmes fogás jellemzi, amely garantálja a precíz és biztonságos vágást.', 'pengekes.jpg', 2300),
+(14, 'BIL Hajszárító', 'Professzionális minőségű, amely ideális a mindennapi használatra. Kiváló teljesítménnyel rendelkezik, tartós és hatékony, és hosszú élettartamot garantál.', 'hajszarito.jpg', 5800),
+(15, 'BIL Borotvaecset', 'A kefe puha sörtéivel könnyen lehet vele ápolni és formázni a bajuszodat, így mindig szép és rendezett lesz.', 'borotvaecset.jpg', 3100),
+(16, 'BIL Ritkító olló', 'Az általunk ajánlott ritkító olló nem csak hatékonyan segít a haj ritkításában és vékonyításában, de nagyon is kényelmes használni, így akár a kezdők számára is könnyen elsajátítható.', 'ritkitoollo.jpg', 1250);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -181,8 +187,7 @@ INSERT INTO `termekek` (`termekid`, `megnev`, `leiras`, `termekkep`, `ar`) VALUE
 -- A tábla indexei `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  ADD PRIMARY KEY (`felhaszid`),
-  ADD UNIQUE KEY `EMAIL` (`email`);
+  ADD PRIMARY KEY (`felhaszid`);
 
 --
 -- A tábla indexei `idopontfoglalas`
@@ -252,7 +257,7 @@ ALTER TABLE `stilus`
 -- AUTO_INCREMENT a táblához `termekek`
 --
 ALTER TABLE `termekek`
-  MODIFY `termekid` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `termekid` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
