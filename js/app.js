@@ -188,7 +188,13 @@
           email: null,
           jelszo: null
         };
-
+        $rootScope.kijelentkezes = function () {
+          $rootScope.bejelentkezve = false;
+          $("#reservationModalLabel").text("Kijelentkezve!");
+          $(".modal-body").text("Sikeresen kijelentkezett!");
+          $("#reservationModal").modal("show");
+          $state.go("home")
+        }
         $scope.login = function () {
           http
             .request({
@@ -198,10 +204,13 @@
             })
             .then(data => {
               if (data.length) {
-                $scope.data = data[0];
-                $scope.$applyAsync();
+                $rootScope.user = data[0];
+                $rootScope.$applyAsync();
                 $rootScope.bejelentkezve = true;
-                console.log($rootScope.bejelentkezve);
+                $("#reservationModalLabel").text("Bejelentkezve!");
+                $(".modal-body").text("Sikeresen bejelentkezett!");
+                $("#reservationModal").modal("show");
+                $state.go("home")
 
               } else {
                 $scope.model = {
@@ -216,24 +225,10 @@
             .catch((e) => {
               console.log(e)
             });
-        };
-        $scope.kijelentkezes = function () {
-          $rootScope.bejelentkezve = false;
-          $state.go("home");
-        }
+        } 
       }
-
     ]);
 
 
 
 })(window, angular);
-
-function nav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
