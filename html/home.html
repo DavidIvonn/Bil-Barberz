@@ -1,43 +1,140 @@
 <div ng-include src="'./html/navigate.html'"></div>
-<div class="main">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" >
-            <img src="./img/carosuel/udvozlo.png" class="d-block w-100"  alt="...">
+<div class="main" id="top-page" class="position-absolute w-100">
+  
+  <body class="home bg-img bg-image-contain position-absolute w-100 h-100 top-0 start-0 m-0 p-0">
+
+    <!-- Scrollable container -->
+    <div class="scrollable-container position-absolute w-100 start-0 m-0 p-0">
+  
+      <!-- Main -->
+      <main id="top-page" class="position-absolute w-100">
+  
+        <!-- Container -->
+        <div class="container">
+  
+          <!-- Row -->
+          <div class="row text-center mt-5">
+  
+            <!-- Grid -->
+            <div class="col-11 col-md-10 col-xl-8 mx-auto">
+            
+              <!-- Title -->
+              <h6 class="fst-italic text-uppercase display-6 ">
+                Üdvözöllek a Barber Shoppon!
+              </h6>
+  
+              <!-- Content -->
+              <p class="text-muted fs-5 fst-italic px-4 mt-3">          	
+                Üzletünk Makó első Barber Shopja, mely 2019 szeptemberében nyitotta meg kapuját a modern úriemberek világa előtt. Elsőként adtunk lehetőséget Makó és környékén élő férfiak számára, hogy egy egyedülálló helyen élvezhessék a klasszikus, mégis modern borbély üzlet előnyeit. Kizárólag több éves tapasztalattal rendelkező, profi szaktudású fodrászokkal, a nők és férfiak igényeire specializálódva igyekszünk töretlenül nap, mint nap a legjobbat nyújtani.
+              </p>
+            </div>
           </div>
-          <div class="carousel-item">
-           <img src="./img/carosuel/rolunk.jpg" class="d-block w-100"  alt="...">
+  
+          <!-- Row -->
+          <div class="row mt-3">
+  
+            <!-- Carousel -->
+            <div id="carouselCarCaptions" 
+                 class="carousel slide" 
+                 data-bs-ride="carousel">
+  
+              <!--- Indicators -->
+              <div class="carousel-indicators">
+                <button type="button" 
+                        data-bs-target="#carouselCarCaptions" 
+                        data-bs-slide-to="0" 
+                        class="active" 
+                        aria-current="true" 
+                        aria-label="Slide 1">
+                </button>
+                <button type="button" 
+                        data-bs-target="#carouselCarCaptions" 
+                        data-bs-slide-to="1" 
+                        aria-label="Slide 2">
+                </button>
+                <button type="button" 
+                        data-bs-target="#carouselCarCaptions" 
+                        data-bs-slide-to="2" 
+                        aria-label="Slide 3">
+                </button>
+                <button type="button" 
+                        data-bs-target="#carouselCarCaptions" 
+                        data-bs-slide-to="3" 
+                        aria-label="Slide 4">
+                </button>
+                <button type="button" 
+                        data-bs-target="#carouselCarCaptions" 
+                        data-bs-slide-to="4" 
+                        aria-label="Slide 5">
+                </button>
+              </div>
+
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="./img/carosuel/udvozlo.png" 
+                       class="d-block w-100" 
+                       alt="img">
+                  <div class="carousel-caption d-none d-md-block">
+                   
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="./img/carosuel/rolunk.jpg" 
+                       class="d-block w-100" 
+                       alt="img">
+                  <div class="carousel-caption d-none d-md-block">
+                 
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="./img/carosuel/idopontfoglalas.jpg" 
+                       class="d-block w-100" 
+                       alt="img">
+                  <div class="carousel-caption d-none d-md-block">
+              
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="./img/carosuel/termekek.jpg" 
+                       class="d-block w-100" 
+                       alt="img">
+                  <div class="carousel-caption d-none d-md-block">
+                 
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="./img/carosuel/nyeremeny.jpg" 
+                       class="d-block w-100" 
+                       alt="img">
+                  <div class="carousel-caption d-none d-md-block">
+              
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Previous -->
+              <button class="carousel-control-prev" 
+                      type="button" 
+                      data-bs-target="#carouselCarCaptions" 
+                      data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+            
+              <!-- Next -->
+              <button class="carousel-control-next" 
+                      type="button" 
+                      data-bs-target="#carouselCarCaptions" 
+                      data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
           </div>
-          <div class="carousel-item">
-            <img src="./img/carosuel/termekek.jpg" class="d-block w-100"  alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="./img/carosuel/idopontfoglalas.jpg" class="d-block w-100 "   alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="./img/carosuel/nyeremeny.jpg" class="d-block w-100"  alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
 
 
-
-      <div class="nyitvatartás">
+<hr>
+      <div class="nyitvatartás my-5">
         <h1 >Nyitvatartás</h1>
       </div>
 

@@ -1,11 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap');
 body {
   overflow-x: hidden;
   background-color: #DADDD8;
-  font-family: 'Comfortaa', cursive;
+  font-family: 'Fuzzy Bubbles', cursive;
  
 }
 /*menu*/
+
+
+.topnav .login-icon,
+.topnav .register-icon {
+  float: right;
+}
+
 .topnav {
 
   overflow: hidden;
@@ -449,7 +456,7 @@ label{
 .arlista {
   margin: 0 auto;
   width: 300px;
-  height: 500px;
+  height: 550px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 10px;
   text-align: center;
