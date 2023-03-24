@@ -376,6 +376,7 @@ ul{
 
 /*termekek*/
 
+
 .termekek{
   border-radius: 50%;
   width: 300px;
@@ -389,12 +390,14 @@ label{
 
 }
 .btn{
-  background-color: #EEF0F2;
+  color: white;
+  background-color: #333;
   border: 1px solid #1C1C1C;
   font-size: 27px;
 }
 .btn:hover{
-  background-color: #ECEBE4;
+  color:white;
+  background-color: #333;
   border: 1px solid #1C1C1C;
   font-size: 27px;
   font-weight: bolder;
