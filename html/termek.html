@@ -1,13 +1,25 @@
 <div ng-include src="'./html/navigate.html'"></div>
 <div class="main">
+
   <div class="header">
     <h2>Termékeink</h2>
+    <div class="cart-icon">
+      <i class="fa fa-shopping-cart"></i>
+      <span class="cart-count">{{cartItemCount}}</span>
+    </div>
   </div>
+
+
+
+
+
+
   <div class="row my-5">
     <div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
       <form action="#" method="get">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Keresés név szerint...">
+          <input type="text" class="form-control" placeholder="Keresés név szerint..." id="search" onkeyup="search()">
+
           <button type="submit" class="btn btn-outline-secondary">Keresés</button>
         </div>
       </form>
@@ -27,39 +39,42 @@
 
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid" id="product-list">
     <div class="row my-5">
       <div class="col-sm-6 col-md-4 col-lg-3 mb-4" ng-repeat="termekek in data track by $index">
-        <div class="card arlista">
+        <div class="card termekek" id="product" >
           <img class="card-img-top arkep" src="./img/{{termekek.termekkep}}" alt="..." />
           <div class="card-body p-1">
             <div class="text-center">
               <h5 class="fw-bolder">{{termekek.megnev}}</h5>
               {{termekek.ar}} Ft
-            
             </div>
-           
-        
-         
+            <button type="button" class="btn btn-secondary leirasgomb" data-bs-toggle="modal" data-bs-target="#modal{{ $index }}">
+              Leírás
+            </button>
           </div>
-          <button class="btn btn-sm btn-dark kosar float-end px-4 shadow-sm w-100"
-        data-bs-toggle="modal" 
-        data-bs-target="#my-modal-1">
- Kosárba
-</button>
+          <button class="btn btn-sm btn-dark kosar float-end px-4 shadow-sm w-100" data-bs-toggle="modal" data-bs-target="#my-modal-1">
+            Kosárba
+          </button>
         </div>
-      
+        <div class="modal fade" id="modal{{ $index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5">{{termekek.megnev}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" style="text-align:justify;">
+                {{termekek.leiras}}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary leirasgomb" data-bs-dismiss="modal">Bezárás</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-
-
-
-
-    </div>
-    
-
-
-    </div>
-<div ng-include src="'./html/footer.html'"></div>
+</div>
+<div ng-include src="'./html/footer.html'">

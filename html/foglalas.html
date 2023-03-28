@@ -4,9 +4,8 @@
 	<h2>Időpontfoglalás űrlap</h2>
 </div>
 
-
 <div class="container">
-    <form class="row g-3 my-5">
+    <form class="row g-3 my-5" >
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Email</label>
           <input type="email" class="form-control" id="inputEmail4">
@@ -15,11 +14,11 @@
           <label for="inputnumber" class="form-label">Telefonszám</label>
           <input type="phone" class="form-control" id="phone">
         </div>
-        <div class="col-12">
+        <div class="col-12" >
             <label for="inputState" class="form-label">Stílus</label>
             <select id="inputState" class="form-select">
               <option selected>Válasszon stílust...</option>
-              <option>...</option>
+              <option ng-repeat="stilus in data track by $index">{{stilus.megnev}}</option>
             </select>
         </div>
         <div class="col-md-12">
@@ -39,6 +38,7 @@
         </div>
       </form>
     </div>
+
 
 </html>
 
