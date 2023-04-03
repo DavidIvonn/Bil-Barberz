@@ -3,6 +3,9 @@
 // Require file
 require_once('../../../common/php/Database.php');
 
+
+//$_POST['data'] = '{"nev":"Dávid Ivonn","telszam":"06302296876","email":"asd@gmail.com","jelszo":"valami","lakcim":"Kiszombor"}';
+
 // Set result
 $result = null;
 
@@ -15,6 +18,11 @@ $db = new Database('barbershop');
 // Check if email already exists
 $query = "SELECT COUNT(*) FROM `felhasznalok` WHERE `email` = :email;";
 $db->execute($query, array('email' => $args['email']));
+$result = $db->get_data();
+
+
+
+
 if ($db->get_data()[0]['COUNT(*)'] > 0) {
   Util::setError("Ezzel az email címmel már regisztráltak!", false);
 } else {
