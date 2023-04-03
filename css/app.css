@@ -375,13 +375,26 @@ ul{
 /*/Időpontfoglalás*/
 
 /*termekek*/
+.header {
+  position: relative;
+}
 
+.cart-icon {
+  position: absolute;
+  top: 35px;
+  right: 40px;
+  cursor: pointer;
+}
 
 .termekek{
-  border-radius: 50%;
+  
+  margin: 0 auto;
   width: 300px;
-  height: 400px;
- margin:0 auto;
+  height: 570px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: center;
+  background-color: #f1f1f1;
 }
 
 /*Login*/
