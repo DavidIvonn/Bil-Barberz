@@ -22,7 +22,8 @@
           })
           .state('foglalas', {
             url: '/foglalas',
-            templateUrl: './html/foglalas.html'
+            templateUrl: './html/foglalas.html',
+            controller: "idopontController"
           })
           .state('arlista', {
             url: '/arlista',

@@ -17,8 +17,8 @@
         <div class="col-12" >
             <label for="inputState" class="form-label">Stílus</label>
             <select id="inputState" class="form-select" ng-model="selectedStyle" ng-options="stilus.megnev for stilus in data track by stilus.stilusid">
-              <option value="">Válasszon stílust...</option>
-              <option ng-repeat="megnev in stilus">{{stilus.megnev}}</option>
+              <option value="" selected>Válasszon stílust...</option>
+              <option>{{stilus.megnev}}</option>
             </select>
         </div>
         <div class="col-md-12">
