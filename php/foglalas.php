@@ -35,6 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
+
+
 // Bezárni az adatbáziskapcsolatot
 mysqli_close($conn);
 ?>

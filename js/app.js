@@ -64,7 +64,7 @@
         // Set global variables
         $rootScope.user = null;
         $rootScope.bejelentkezve = false;
- 
+
       }
     ])
 
@@ -130,11 +130,11 @@
         $scope.register = function () {
 
           // Form validation
-          if (!$scope.model.nev || 
-              !$scope.model.email || 
-              !$scope.model.telszam || 
-              !$scope.model.jelszo || 
-              !$scope.model.lakcim) {
+          if (!$scope.model.nev ||
+            !$scope.model.email ||
+            !$scope.model.telszam ||
+            !$scope.model.jelszo ||
+            !$scope.model.lakcim) {
             // Failed validation - show error message
             $("#sikertelen .modal-body").text("Kérjük, töltse ki az összes mezőt!");
             $("#sikertelen").modal("show");
@@ -237,18 +237,43 @@
                   email: null,
                   jelszo: null
                 };
-                $scope.data = null;-
-                $scope.$applyAsync();
+                $scope.data = null; -
+                  $scope.$applyAsync();
                 $("#sikertelenbejentkez").modal("show");
               }
             })
             .catch((e) => {
               console.log(e)
             });
-        } 
+        }
       }
-    ]);
+    ])
 
+
+    .controller("idopontController", [
+      "$scope",
+      "http",
+      function ($scope, http) {
+        // Make an HTTP POST request to retrieve data from the server
+        http.request({
+          url: "./php/get.php",
+          method: "POST",
+          data: {
+            db: "barbershop",
+            query: "SELECT megnev from stilus",
+            isAssoc: true,
+          },
+        })
+          .then(data => {
+            // Assign the retrieved data to a scope variable
+            $scope.data = data;
+            $scope.$applyAsync();
+          })
+          .catch((e) => console.log(e));
+          
+        
+        
+      }]);
 
 
 })(window, angular);
