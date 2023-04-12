@@ -27,13 +27,12 @@
           .state('arlista', {
             url: '/arlista',
             templateUrl: './html/ar.html',
-            controller: "arkontroller"
-
+            controller: "arController"
           })
           .state('termekek', {
             url: '/termekek',
             templateUrl: './html/termek.html',
-            controller: "termekkontroller"
+            controller: "termekController"
           })
           .state('nyeremeny', {
             url: '/nyeremeny',
@@ -52,12 +51,25 @@
 
         $urlRouterProvider.otherwise('/');
       }
+    ])
 
+    //app run
+    .run([
+      "$rootScope",
+      "$transitions",
+      "$timeout",
+      "http",
+      function ($rootScope, $transitions, $timeout, http) {
 
+        // Set global variables
+        $rootScope.user = null;
+        $rootScope.bejelentkezve = false;
+ 
+      }
     ])
 
     //
-    .controller("arkontroller", [
+    .controller("arController", [
       "$scope",
       "http",
       function ($scope, http) {
@@ -79,10 +91,13 @@
       }
     ])
 
-    .controller("termekkontroller", [
+    .controller("termekController", [
       "$scope",
       "http",
       function ($scope, http) {
+        $scope.searchTerm = '';
+        $scope.cardHeight = 0;
+        
         http
           .request({
             url: "./php/get.php",
@@ -93,14 +108,42 @@
               isAssoc: true,
             },
           })
+        
           .then(data => {
             $scope.data = data;
+            $scope.cardHeight = angular.element('.termekek').height();
             $scope.$applyAsync();
           })
           .catch((e) => console.log(e));
-      }
+    
+        // kereső függvény
+        $scope.search = function() {
+          var term = $scope.searchTerm.toLowerCase();
+          if (!term) {
+            // ha nincs keresőszöveg, minden kártya látható
+            angular.element('.termekek').show();
+            $scope.cardHeight = angular.element('.termekek').height();
+          } else {
+            // kártyák szűrése a keresőszöveg alapján
+            angular.element('.termekek').each(function() {
+              var name = angular.element(this).find('.fw-bolder').text().toLowerCase();
+              if (name.indexOf(term) > -1) {
+                angular.element(this).show();
+                // Ha a találat az elején van, akkor a találatokat a lista elejére rakjuk
+                if (name.indexOf(term) === 0) {
+                  angular.element(this).prependTo('.container-fluid .row ');
+                }
+              } else {
+                angular.element(this).hide();
+              }
+            });
+            $scope.cardHeight = angular.element('.termekek').height();
+          }
+        };
+        
+      },
     ])
-
+    
     .controller("registerController", [
       "$scope",
       "http",
@@ -118,7 +161,11 @@
         $scope.register = function () {
 
           // Form validation
-          if (!$scope.model.nev || !$scope.model.email || !$scope.model.telszam || !$scope.model.jelszo || !$scope.model.lakcim) {
+          if (!$scope.model.nev || 
+              !$scope.model.email || 
+              !$scope.model.telszam || 
+              !$scope.model.jelszo || 
+              !$scope.model.lakcim) {
             // Failed validation - show error message
             $("#sikertelen .modal-body").text("Kérjük, töltse ki az összes mezőt!");
             $("#sikertelen").modal("show");
@@ -188,13 +235,17 @@
           email: null,
           jelszo: null
         };
+
         $rootScope.kijelentkezes = function () {
           $rootScope.bejelentkezve = false;
+          $rootScope.user = null;
+          $rootScope.$applyAsync();
           $("#reservationModalLabel").text("Kijelentkezve!");
           $(".modal-body").text("Sikeresen kijelentkezett!");
           $("#reservationModal").modal("show");
           $state.go("home")
         }
+
         $scope.login = function () {
           http
             .request({
@@ -205,8 +256,8 @@
             .then(data => {
               if (data.length) {
                 $rootScope.user = data[0];
-                $rootScope.$applyAsync();
                 $rootScope.bejelentkezve = true;
+                $rootScope.$applyAsync();
                 $("#reservationModalLabel").text("Bejelentkezve!");
                 $(".modal-body").text("Sikeresen bejelentkezett!");
                 $("#reservationModal").modal("show");
@@ -217,7 +268,7 @@
                   email: null,
                   jelszo: null
                 };
-                $scope.data = null;
+                $scope.data = null;-
                 $scope.$applyAsync();
                 $("#sikertelenbejentkez").modal("show");
               }
