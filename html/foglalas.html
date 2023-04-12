@@ -7,26 +7,25 @@
 <div class="container">
     <form class="row g-3 my-5" action="foglalas.php" >
         <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email</label>
+          <label for="inputEmail4" class="form-label">Email:</label>
           <input type="email" class="form-control" id="inputEmail4">
         </div>
         <div class="col-md-6">
-          <label for="inputnumber" class="form-label">Telefonszám</label>
+          <label for="inputnumber" class="form-label">Telefonszám:</label>
           <input type="phone" class="form-control" id="phone">
         </div>
         <div class="col-12" >
-            <label for="inputState" class="form-label">Stílus</label>
-            <select id="inputState" class="form-select">
-              <option selected>Válasszon stílust...</option>
-              <option ng-repeat="stilus in data track by $index">{{stilus.megnev}}</option>
+            <label for="inputState" class="form-label">Válasszon stílust:</label>
+            <select id="inputState" class="form-select" ng-model="selectedStyle" ng-options="stilus.megnev for stilus in data track by stilus.stilusid">
+              <option>{{stilus.megnev}}</option>
             </select>
         </div>
         <div class="col-md-12">
-            <label for="inputnumber" class="form-label">Időpont</label>
+            <label for="inputnumber" class="form-label">Időpont:</label>
             <input type="date" class="form-control" id="phone">
           </div>
           <div class="col-md-12">
-            <label for="inputnumber" class="form-label">Egyéb megjegyzés</label>
+            <label for="inputnumber" class="form-label">Egyéb megjegyzés:</label>
             <input type="text" class="form-control" id="phone">
           </div>
   
