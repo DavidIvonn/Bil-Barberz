@@ -271,9 +271,9 @@
             $scope.$applyAsync();
           })
           .catch((e) => console.log(e));
-          
-        
-        
+
+
+
       }]);
 
 
