@@ -96,6 +96,9 @@
       "$scope",
       "http",
       function ($scope, http) {
+        $scope.searchTerm = '';
+        $scope.cardHeight = 0;
+        
         http
           .request({
             url: "./php/get.php",
@@ -106,14 +109,42 @@
               isAssoc: true,
             },
           })
+        
           .then(data => {
             $scope.data = data;
+            $scope.cardHeight = angular.element('.termekek').height();
             $scope.$applyAsync();
           })
           .catch((e) => console.log(e));
-      }
+    
+        // kereső függvény
+        $scope.search = function() {
+          var term = $scope.searchTerm.toLowerCase();
+          if (!term) {
+            // ha nincs keresőszöveg, minden kártya látható
+            angular.element('.termekek').show();
+            $scope.cardHeight = angular.element('.termekek').height();
+          } else {
+            // kártyák szűrése a keresőszöveg alapján
+            angular.element('.termekek').each(function() {
+              var name = angular.element(this).find('.fw-bolder').text().toLowerCase();
+              if (name.indexOf(term) > -1) {
+                angular.element(this).show();
+                // Ha a találat az elején van, akkor a találatokat a lista elejére rakjuk
+                if (name.indexOf(term) === 0) {
+                  angular.element(this).prependTo('.container-fluid .row ');
+                }
+              } else {
+                angular.element(this).hide();
+              }
+            });
+            $scope.cardHeight = angular.element('.termekek').height();
+          }
+        };
+        
+      },
     ])
-
+    
     .controller("registerController", [
       "$scope",
       "http",

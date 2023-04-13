@@ -1,53 +1,77 @@
 <nav class="navbar navbar-expand-md">
-	<a class="navbar-brand" ui-sref=""><img src="./img/logo-vilagos.svg" 
-		width="120px" height="120px"></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-		<span class="navbar-toggler-icon"></span>
-	</button>
+  <a class="navbar-brand" ui-sref=""
+    ><img src="./img/logo-vilagos.svg" width="120px" height="120px"
+  /></a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<a class="nav-link" ui-sref="home">Home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" ui-sref="arlista">Árlista</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" ui-sref="termekek">Termékek</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" ui-sref="foglalas">Időpontfoglalás</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" ui-sref="rolunk">Rólunk</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" ui-sref="nyeremeny">Nyereményjáték</a>
-			</li>
-			<li class="nav-item dropdown">
-				<!--<div class="dropdown">-->
-					<a class="dropdown-toggle nav-link" href="#" role="button" 
-						id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
-						ng-show="!bejelentkezve">
-						Fiók
-					</a>
-					<a class="dropdown-toggle nav-link" href="#" role="button" 
-						id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
-						ng-show="bejelentkezve">
-						{{user.nev}}
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-						<a class="dropdown-item" ng-show="!bejelentkezve" ui-sref="login">Bejelentkezés</a>
-						<a class="dropdown-item" ng-show="!bejelentkezve" ui-sref="register">Regisztráció</a>
-						<a class="dropdown-item" ng-show="bejelentkezve" ng-click="kijelentkezes()">Kijelentkezés</a>
-					</ul>
-				<!-- </div> -->
-			</li>
-		</ul>
-	</div>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" ui-sref="home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" ui-sref="arlista">Árlista</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" ui-sref="termekek">Termékek</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" ui-sref="foglalas">Időpontfoglalás</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" ui-sref="rolunk">Rólunk</a>
+      </li>
+      <li class="nav-item dropdown">
+        <!--<div class="dropdown">-->
+        <a
+          class="dropdown-toggle nav-link"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          ng-show="!bejelentkezve"
+        >
+          Fiók
+        </a>
+        <a
+          class="dropdown-toggle nav-link"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          ng-show="bejelentkezve"
+        >
+          {{user.nev}}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" ng-show="!bejelentkezve" ui-sref="login"
+            >Bejelentkezés</a
+          >
+          <a class="dropdown-item" ng-show="!bejelentkezve" ui-sref="register"
+            >Regisztráció</a
+          >
+          <a
+            class="dropdown-item"
+            ng-show="bejelentkezve"
+            ng-click="kijelentkezes()"
+            >Kijelentkezés</a
+          >
+        </ul>
+        <!-- </div> -->
+      </li>
+    </ul>
+  </div>
 
-			<!--
+  <!--
 
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" ui-sref="" id="navbarDropdown" 
@@ -67,21 +91,33 @@
 		 -->
 </nav>
 
-
-			<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog"
-				aria-labelledby="reservationModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title text-dark" id="reservationModalLabel"></h5>
-							<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body text-dark"></div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
-						</div>
-					</div>
-				</div>
-			</div>
+<div
+  class="modal fade"
+  id="reservationModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="reservationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="reservationModalLabel"></h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-dark"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Bezárás
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
