@@ -7,56 +7,52 @@
     <div class="cart-icon">
      <a href="./html/kosar.html"> <i class="fa fa-shopping-cart"></i></a>
     </div>
-    
   </div>
+  <!-- Title -->
+  <div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
+    <h2 class="display-6 text-muted my-5">
+      Tekintsd meg termékeinket:
+    </h2>
 
+    <p>
+      <b>INGYENES SZÁLLÍTÁS</b> 15.000 - Ft feletti vásárlás esetén. Rendelj most, hogy nehogy lemaradj új
+      kedvezményeinkről!!
+    </p>
 
-
-
-
-
-  <div class="row my-5">
-    <div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
-      <form action="#" method="get">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Keresés név szerint..." id="search" ng-model="searchTerm" ng-keyup="search()">
-  
-          
-        </div>
-      </form>
-    </div>
   </div>
+</div>
 
-  <div class="row">
-
-    <!-- Title -->
-    <div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
-      <h2 class="display-6 text-muted my-5">
-        Tekintsd meg termékeinket:
-      </h2>
-
-      <p>
-       <b>INGYENES SZÁLLÍTÁS</b> 15.000 - Ft feletti vásárlás esetén. Rendelj most, hogy nehogy lemaradj új kedvezményeinkről!!
-      </p>
-
-    </div>
+<div class="row my-5">
+  <div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
+    <form action="#" method="get">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Keresés név szerint..." id="search" ng-model="searchTerm"
+          ng-keyup="search()">
+      </div>
+    </form>
   </div>
+</div>
+
+<div class="row">
+
 
   <div class="container-fluid">
     <div class="row my-5">
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-4" ng-repeat="termekek in data track by $index">
-        <div class="card termekek">
-          <img class="card-img-top arkep" src="./img/{{termekek.termekkep}}" alt="..."  title="{{termekek.megnev}}"/>
+      <div class="col-sm-6 col-md-4 col-lg-2 mb-4" ng-repeat="termekek in filteredData track by $index">
+        <div class="card termekek mx-1 px-1">
+          <img class="card-img-top arkep" src="./img/{{termekek.termekkep}}" alt="..." title="{{termekek.megnev}}" />
           <div class="card-body p-1">
             <div class="text-center">
               <h5 class="fw-bolder">{{termekek.megnev}}</h5>
               {{termekek.ar}} Ft
             </div>
-            <button type="button" class="btn btn-secondary leirasgomb" data-bs-toggle="modal" data-bs-target="#modal{{ $index }}">
+            <button type="button" class="btn btn-secondary leirasgomb" data-bs-toggle="modal"
+              data-bs-target="#modal{{ $index }}">
               Leírás
             </button>
           </div>
-          <button class="btn btn-sm btn-dark kosar float-end px-4 shadow-sm w-100" data-bs-toggle="modal" data-bs-target="#my-modal-1">
+          <button class="btn btn-sm btn-dark kosar float-end px-1 shadow-sm w-100" data-bs-toggle="modal"
+            data-bs-target="#my-modal-1">
             Kosárba
           </button>
         </div>
@@ -78,9 +74,14 @@
         </div>
       </div>
     </div>
+    <div ng-if="filteredData.length === 0" class="text-center">Nincs találat!</div>
   </div>
 
-  
+
 </div>
 
+<<<<<<< HEAD
+<div ng-include src="'./html/footer.html'">
+=======
 <div ng-include src="'./html/footer.html'"></div>
+>>>>>>> 0d980811790476e23d2978d83d4de68924c397cc
