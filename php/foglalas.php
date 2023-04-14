@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Ellenőrizni, hogy a felhasználó be van-e jelentkezve
   if (!isset($_SESSION['username'])) {
     echo "Hiba: A foglaláshoz be kell jelentkezni!";
-  } 
+  }
   // Ellenőrizni, hogy az időpont üres-e
   else if (empty($_POST['idopont'])) {
     echo "Hiba: Az időpont nem lehet üres!";
