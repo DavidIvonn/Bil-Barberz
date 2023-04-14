@@ -486,6 +486,16 @@ label{
 }
 
 
-
+/*shop item*/
+ .shopping-item {
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: gray;
+    line-height: 25px;
+    font-size: 16px;
+  }
 
 
