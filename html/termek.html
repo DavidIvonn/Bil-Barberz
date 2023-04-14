@@ -1,12 +1,13 @@
 <div ng-include src="'./html/navigate.html'"></div>
+
 <div class="main">
 
   <div class="header">
     <h2>Termékeink</h2>
     <div class="cart-icon">
       <i class="fa fa-shopping-cart"></i>
-      <span class="cart-count">{{cartItemCount}}</span>
     </div>
+    
   </div>
 
 
@@ -18,13 +19,14 @@
     <div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
       <form action="#" method="get">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Keresés név szerint..." id="search" onkeyup="search()">
-
-          <button type="submit" class="btn btn-outline-secondary">Keresés</button>
+          <input type="text" class="form-control" placeholder="Keresés név szerint..." id="search" ng-model="searchTerm" ng-keyup="search()">
+  
+          
         </div>
       </form>
     </div>
   </div>
+
   <div class="row">
 
     <!-- Title -->
@@ -39,11 +41,12 @@
 
     </div>
   </div>
-  <div class="container-fluid" id="product-list">
+
+  <div class="container-fluid">
     <div class="row my-5">
       <div class="col-sm-6 col-md-4 col-lg-3 mb-4" ng-repeat="termekek in data track by $index">
-        <div class="card termekek" id="product" >
-          <img class="card-img-top arkep" src="./img/{{termekek.termekkep}}" alt="..." />
+        <div class="card termekek">
+          <img class="card-img-top arkep" src="./img/{{termekek.termekkep}}" alt="..."  title="{{termekek.megnev}}"/>
           <div class="card-body p-1">
             <div class="text-center">
               <h5 class="fw-bolder">{{termekek.megnev}}</h5>
@@ -76,5 +79,8 @@
       </div>
     </div>
   </div>
+
+  
 </div>
+
 <div ng-include src="'./html/footer.html'">
