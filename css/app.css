@@ -176,6 +176,9 @@ h2{
   font-size: 40px;
   text-align: center;
 }
+h3{
+  font-size: 30;
+}
 
 h1{
   text-align: center;
@@ -425,6 +428,8 @@ label{
   padding-bottom: 250px;
 }
 
+
+
 /*arlista*/
 .column {
 
@@ -486,6 +491,16 @@ label{
 }
 
 
-
+/*shop item*/
+ .shopping-item {
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: gray;
+    line-height: 25px;
+    font-size: 16px;
+  }
 
 

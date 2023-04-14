@@ -1,89 +1,96 @@
 <div ng-include src="'./html/navigate.html'"></div>
-<div class="main">
+<h1 class="mt-5">Válaszold meg helyesen kérdéseinket és egy ingyen barbershop tanfolyamnak lehetsz részese!</h1>
+<div class="container mt-5">
+  <script language="JavaScript" type="text/JavaScript">
+    <!--
+    function ertekelo(){
+    let hiba =4;
+    // Kérdés1 radiogomb
+    if (document.nyer.valasz1[0].checked) hiba=hiba-1;
+    if (document.nyer.valasz2[1].checked) hiba=hiba-1;
+    if (document.nyer.valasz3[2].checked) hiba=hiba-1;
+    if (document.nyer.valasz4[0].checked) hiba=hiba-1;
+      
+    //Értékelés
+    if (hiba ==0) document.nyer.eredmeny.value='Jól választottál!';
+      else document.nyer.eredmeny.value=hiba+' hibás választ adtál meg. Megpróbálod újra?';
+    }
+       
+  </script>
+  <form name="nyer">
+    <div class="mb-3 row">
+      <label for="inputEmail" class="col-md-2 col-form-label">
+        E-mail:
+      </label>
+      <div class="col-md-10">
+        <input type="text" class="form-control" />
+      </div>
     </div>
-    <h2>Válaszold meg helyesen kérdéseinket és egy ingyen barbershop tanfolyamnak lehetsz részese!</h2>
-    <script language="JavaScript" type="text/JavaScript">
-        <!--
-        function ertekelo(){
-        var hiba =4;
-        // Kérdés1 radiogomb
-        if (document.nyer.valasz1[0].checked) hiba=hiba-1;
-        if (document.nyer.valasz2[1].checked) hiba=hiba-1;
-        if (document.nyer.valasz3[2].checked) hiba=hiba-1;
-        if (document.nyer.valasz4[0].checked) hiba=hiba-1;
-        
-        
-        
-        
-        //Értékelés
-        if (hiba ==0) document.nyer.eredmeny.value='Jól választottál!';
-          else document.nyer.eredmeny.value='Sajnos, ' +hiba+' hibás választás. Próbáld meg újra!';
-          }
-        
-        //-->
-        </script>
-<form action="./php/nyer.php" method="POST" name="nyer">
-
-   E-mail:  <input type="text" name="email" >
-    
     <div>
-        <strong class="font-weight-bold">
-            
-        1. Milyen típusú hajszárító segít a fodrászoknak a haj formázásában? </strong><br>
-       
-            <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="kezi" aria-label="asd">Kézi hajszárító
-            <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="buras" aria-label="asd">Búrás hajszárító
-            <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="ipari" aria-label="asd">Ipari hajszárító
-       
-          </div>
+      <h3>
+        1. Milyen típusú hajszárító segít a fodrászoknak a haj formázásában?
+      </h3>
+      <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="kezi" aria-label="asd">Kézi
+      hajszárító
+      <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="buras" aria-label="asd">Búrás
+      hajszárító
+      <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="ipari" aria-label="asd">Ipari
+      hajszárító
+    </div>
 
-        <strong class="font-weight-bold">
-        2. Mi az a frizuratípus, amelynek a neve a "pixie"?</strong><br>
-        <div>
-            <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="oldalt" aria-label="asd">Oldalt felnyírt haj
-            <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="rovid" aria-label="asd">Rövid felnyírt frizuratípus
-            <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="felhosszu" aria-label="asd">Félhosszú női hajvágás
-          </div>
-        
+    <div>
+        <h3 class="mt-4">
+          2. Mi az a frizuratípus, amelynek a neve a "pixie"?
+        </h3>
+        <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="oldalt" aria-label="asd">Oldalt
+        felnyírt haj
+        <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="rovid" aria-label="asd">Rövid
+        felnyírt frizuratípus
+        <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="felhosszu"
+          aria-label="asd">Félhosszú női hajvágás
+    </div>
 
-        <strong class="font-weight-bold">
-        3. Milyen típusú hajfesték segít a fodrászoknak eltávolítani a hajban lévő sárga vagy aranyesetű árnyalatot?</strong><br>
+      <div>
+        <h3 class="mt-4">
+          3. Milyen típusú hajfesték segít a fodrászoknak eltávolítani a hajban lévő sárga vagy aranyesetű
+          árnyalatot?</h3>
+        <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="hajszinezo"
+          aria-label="asd">Hajszínező
+        <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="HennaPlus"
+          aria-label="asd">HennaPlus hajfesték
+        <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="hamvasito"
+          aria-label="asd">Hamvasító
+      </div>
 
-        <div>
-            <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="hajszinezo" aria-label="asd">Hajszínező
-            <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="HennaPlus" aria-label="asd">HennaPlus hajfesték
-            <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="hamvasito" aria-label="asd">Hamvasító
-          </div>
-
-        <strong class="font-weight-bold">
-        4. Mi az a frizuratípus, amelynek a neve a "fodrászati vágás"?</strong> <br>
-
-        <div>
-            <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="ferfi" aria-label="asd">Férfi frizuratípus hosszú hajra
-            <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="rovid" aria-label="asd">Rövid hajtípus férfiaknak
-            <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="kopaszodas" aria-label="asd">Kopaszodást eltűntető hajvágás 
-          </div>
-          <p>
-            <label>
-            <input name="Button" type="button" onclick="ertekelo()" value="Kiértékelés" />
-            </label>
-            <label>
-          
-            <input name="eredmeny" type="text" id="eredmeny" size="50" />
-            </label>
-          </p>
-          <p>
-            <label></label>
-            <label>
-            <input type="reset" name="Reset" value="Alapállapot" />
-            </label>
-          </p>
-
-          <button type="submit" class="button d-grid gap-2 col-2 mx-auto ">
-            Válaszok rögzítése
+      <div>
+        <h3 class="mt-4">
+          4. Mi az a frizuratípus, amelynek a neve a "fodrászati vágás"?</h3>
+        <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="ferfi" aria-label="asd">Férfi
+        frizuratípus hosszú hajra
+        <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="rovid" aria-label="asd">Rövid
+        hajtípus férfiaknak
+        <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="kopaszodas"
+          aria-label="asd">Kopaszodást eltűntető hajvágás
+      </div>
+      <div class="col-md-10 mt-5">
+        <button onclick="ertekelo()" class="btn">
+          Kiértékelés
         </button>
-        </form>
+        <label>
 
+          <input name="eredmeny" type="text" class="form-control" id="eredmeny" size="50" disabled />
+        </label>
+      </div>
+      <div class="mt-3">
+        <button class="btn" type="reset">
+          Alapállapot
+        </button>
+      </div>
 
+      <button type="submit" class="btn d-grid gap-2 col-2 mx-auto ">
+        Válaszok rögzítése
+      </button>
+  </form>
+</div>
 
 <div ng-include src="'./html/footer.html'"></div>

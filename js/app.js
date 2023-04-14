@@ -48,6 +48,11 @@
             url: '/register',
             templateUrl: './html/register.html',
             controller: "registerController"
+          })
+          .state('kosar', {
+            url: '/kosar',
+            templateUrl: './html/cart.html',
+            controller: 'kosarController'  
           });
 
         $urlRouterProvider.otherwise('/');
@@ -272,6 +277,49 @@
         }
       }
     ])
+
+/*.controller("kosarController", [
+  "$scope",
+  "http",
+  "$location",
+  function($scope, $http, $location, authService){
+    if (!authService.bejelentkezve()) {
+      // ha a felhasználó nincs bejelentkezve, akkor átirányítjuk a bejelentkezési oldalra
+      $location.path('/login');
+    }
+  
+    // inicializáljuk a kosár elemeit
+    $scope.kosarElemek = [];
+  
+    // hozzáadunk egy elemet a kosárhoz
+    $scope.hozzaadKosarhoz = function(termek) {
+      // ellenőrizzük, hogy a termék már hozzá van adva a kosárhoz
+      if ($scope.kosarElemek.includes(termek)) {
+        alert('Ez a termék már hozzá van adva a kosárhoz!');
+        return;
+      }
+  
+      // hozzáadjuk a terméket a kosárhoz
+      $scope.kosarElemek.push(termek);
+    };
+  
+    // eltávolítunk egy elemet a kosárból
+    $scope.torolKosarbol = function(termek) {
+      // megkeressük a terméket a kosárban
+      var index = $scope.kosarElemek.indexOf(termek);
+  
+      // ha a termék megtalálható a kosárban, akkor eltávolítjuk
+      if (index !== -1) {
+        $scope.kosarElemek.splice(index, 1);
+      }
+    };
+  }])
+
+*/
+
+
+
+
 
 
     .controller("idopontController", [
