@@ -38,6 +38,7 @@
 
   <div class="container-fluid">
     <div class="row my-5">
+
       <div class="col-sm-6 col-md-4 col-lg-2 mb-4" ng-repeat="termekek in filteredData track by $index">
         <div class="card termekek mx-1 px-1">
           <img class="card-img-top arkep" src="./img/{{termekek.termekkep}}" alt="..." title="{{termekek.megnev}}" />
@@ -56,6 +57,7 @@
             Kosárba
           </button>
         </div>
+        
         <div class="modal fade" id="modal{{ $index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -75,13 +77,10 @@
       </div>
     </div>
     <div ng-if="filteredData.length === 0" class="text-center">Nincs találat!</div>
+    
   </div>
 
 
 </div>
 
-<<<<<<< HEAD
-<div ng-include src="'./html/footer.html'">
-=======
 <div ng-include src="'./html/footer.html'"></div>
->>>>>>> 0d980811790476e23d2978d83d4de68924c397cc
