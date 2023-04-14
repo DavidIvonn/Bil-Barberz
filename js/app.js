@@ -98,7 +98,7 @@
       function ($scope, http) {
         $scope.searchTerm = '';
         $scope.cardHeight = 0;
-        
+
         http
           .request({
             url: "./php/get.php",
@@ -109,42 +109,33 @@
               isAssoc: true,
             },
           })
-        
+
           .then(data => {
             $scope.data = data;
+            $scope.filteredData = data;
             $scope.cardHeight = angular.element('.termekek').height();
             $scope.$applyAsync();
           })
           .catch((e) => console.log(e));
-    
+
         // kereső függvény
-        $scope.search = function() {
+        $scope.search = function () {
           var term = $scope.searchTerm.toLowerCase();
-          if (!term) {
-            // ha nincs keresőszöveg, minden kártya látható
-            angular.element('.termekek').show();
-            $scope.cardHeight = angular.element('.termekek').height();
-          } else {
-            // kártyák szűrése a keresőszöveg alapján
-            angular.element('.termekek').each(function() {
-              var name = angular.element(this).find('.fw-bolder').text().toLowerCase();
-              if (name.indexOf(term) > -1) {
-                angular.element(this).show();
-                // Ha a találat az elején van, akkor a találatokat a lista elejére rakjuk
-                if (name.indexOf(term) === 0) {
-                  angular.element(this).prependTo('.container-fluid .row ');
-                }
-              } else {
-                angular.element(this).hide();
-              }
-            });
-            $scope.cardHeight = angular.element('.termekek').height();
-          }
+          $scope.filteredData = $scope.data.filter(function (card) {
+            var name = card.megnev.toLowerCase();
+            return name.indexOf(term) > -1;
+          });
         };
-        
+
+        // üzenet megjelenítése, ha nincs találat
+        $scope.noResults = function () {
+          return $scope.searchTerm.length > 0 && $scope.filteredData.length === 0;
+        };
+
       },
     ])
-    
+
+
     .controller("registerController", [
       "$scope",
       "http",
@@ -257,6 +248,7 @@
             .then(data => {
               if (data.length) {
                 $rootScope.user = data[0];
+                console.log($rootScope.user);
                 $rootScope.bejelentkezve = true;
                 $rootScope.$applyAsync();
                 $("#reservationModalLabel").text("Bejelentkezve!");
@@ -285,7 +277,13 @@
     .controller("idopontController", [
       "$scope",
       "http",
-      function ($scope, http) {
+      "$rootScope",
+      "$state",
+      function ($scope, http, $rootScope, $state) {
+        // if (!$rootScope.bejelentkezve) {
+        //   alert('Be kell jelentkezned a foglaláshoz!');
+        //   $state.go("login");
+        // }
         // Make an HTTP POST request to retrieve data from the server
         http.request({
           url: "./php/get.php",
@@ -297,15 +295,80 @@
           },
         })
           .then(data => {
-            // Assign the retrieved data to a scope variable
             $scope.data = data;
             $scope.$applyAsync();
+            $scope.updateValidTimes = function () {
+              // get the day of the week for the selected date
+              var date = new Date($scope.selectedDate);
+              var dayOfWeek = date.getDay();
+              $scope.isSunday = function () {
+                var date = new Date($scope.selectedDate);
+                return date.getDay() === 0;
+              };
+
+              // set the valid times for the selected day
+              $scope.validTimes = [];
+
+              switch (dayOfWeek) {
+                case 1: // Monday
+                  $scope.validTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+                  break;
+                case 2: // Tuesday
+                  $scope.validTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+                  break;
+                case 3: // Wednesday
+                  $scope.validTimes = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+                  break;
+                case 4: // Thursday
+                  $scope.validTimes = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+                  break;
+                case 5: // Friday
+                  $scope.validTimes = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+                  break;
+                case 6: // Saturday
+                  $scope.validTimes = ['09:00', '10:00', '11:00', '12:00', '13:00'];
+                  break;
+                default: // Sunday or invalid date
+                  $scope.validTimes = ['Vasárnap zárva vagyunk!'];
+              }
+            };
           })
           .catch((e) => console.log(e));
 
+        $scope.submitForm = function () {
+          // Create a new Date object with the selected date and time
+          var selectedDateTime = new Date($scope.selectedDate + 'T' + $scope.selectedTime + ':00');
+
+          // Format the selected date and time as a string
+          var selectedDateTimeString = $scope.selectedDate + 'T' + $scope.selectedTime + ':00';
+
+          // Make an HTTP POST request to insert the booking into the database
+          http.request({
+            url: './php/foglalas.php',
+            method: 'POST',
+            data: {
+              idopontid: null, // The database should automatically assign an ID to the new booking
+              idopont: selectedDateTimeString,
+              megjegyzes: $scope.comment,
+              felhasznaloid: $rootScope.user.felhaszid,
+              telszam: $scope.phoneNumber
+            }
+          })
+            .then(function (response) {
+              // Handle the response from the server
+              console.log(response);
+              console.log(data)
+            })
+            .catch(function (error) {
+              // Handle any errors that occurred during the request
+              console.log(error.data);
+              console.error(error);
+            });
+        };
 
 
       }]);
+
 
 
 })(window, angular);
