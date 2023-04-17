@@ -1,42 +1,52 @@
 <div ng-include src="'./html/navigate.html'"></div>
 
 <div class="header">
-	<h2>Időpontfoglalás űrlap</h2>
+  <h2>Időpontfoglalás</h2>
+</div>
+<div class="container" ng-controller="idopontController">
+  <form class="row g-3 my-5" ng-submit="submitForm()" name="bookingForm">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="inputEmail4" ng-model="email" required>
+    </div>
+    <div class="col-md-6">
+      <label for="inputnumber" class="form-label">Telefonszám:</label>
+      <input type="tel" class="form-control" id="phone" ng-model="phone" required>
+    </div>
+    <div class="col-12">
+      <label for="inputState" class="form-label">Válasszon stílust:</label>
+      <select id="inputState" class="form-select" ng-model="selectedStyle" ng-options="stilus.megnev for stilus in data track by stilus.stilusid" required>
+        <option value="">-- Válasszon stílust --</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <label for="datepicker" class="form-label">Dátum:</label>
+      <input type="date" class="form-control" id="datepicker" ng-model="selectedDate" ng-change="updateValidTimes()" required>
+      <div ng-if="isSunday()">
+        <small class="text-muted">A vasárnapok nem választhatók ki</small>
+      </div>
+    </div>
+    
+    
+    
+    <div class="col-12">
+      <label for="inputState" class="form-label">Időpont:</label>
+      <select id="inputState" class="form-select" ng-model="selectedTime" required>
+        <option value="">-- Válasszon időpontot --</option>
+        <option ng-repeat="time in validTimes" value="{{time}}">{{time}}</option>
+      </select>
+    </div>
+    
+    <div class="col-md-12">
+      <label for="message" class="form-label">Egyéb megjegyzés:</label>
+      <textarea class="form-control" id="message" ng-model="message"></textarea>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Foglalás</button>
+    </div>
+  </form>
 </div>
 
-<div class="container">
-    <form class="row g-3 my-5" action="foglalas.php" >
-        <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="inputEmail4">
-        </div>
-        <div class="col-md-6">
-          <label for="inputnumber" class="form-label">Telefonszám:</label>
-          <input type="phone" class="form-control" id="phone">
-        </div>
-        <div class="col-12" >
-            <label for="inputState" class="form-label">Válasszon stílust:</label>
-            <select id="inputState" class="form-select" ng-model="selectedStyle" ng-options="stilus.megnev for stilus in data track by stilus.stilusid">
-              <option>{{stilus.megnev}}</option>
-            </select>
-        </div>
-        <div class="col-md-12">
-            <label for="inputnumber" class="form-label">Időpont:</label>
-            <input type="date" class="form-control" id="phone">
-          </div>
-          <div class="col-md-12">
-            <label for="inputnumber" class="form-label">Egyéb megjegyzés:</label>
-            <input type="text" class="form-control" id="phone">
-          </div>
-  
-       
-      
-       
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Foglalás</button>
-        </div>
-      </form>
-    </div>
 
 
 
