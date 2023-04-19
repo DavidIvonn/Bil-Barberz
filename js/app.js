@@ -278,6 +278,8 @@
       }
     ])
 
+    
+
 /*.controller("kosarController", [
   "$scope",
   "http",
@@ -316,12 +318,6 @@
   }])
 
 */
-
-
-
-
-
-
     .controller("idopontController", [
       "$scope",
       "http",

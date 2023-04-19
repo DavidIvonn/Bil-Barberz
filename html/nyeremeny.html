@@ -1,8 +1,7 @@
 <div ng-include src="'./html/navigate.html'"></div>
 <h1 class="mt-5">Válaszold meg helyesen kérdéseinket és egy ingyen barbershop tanfolyamnak lehetsz részese!</h1>
 <div class="container mt-5">
-  <script language="JavaScript" type="text/JavaScript">
-    <!--
+  <script>
     function ertekelo(){
     let hiba =4;
     // Kérdés1 radiogomb
@@ -14,8 +13,7 @@
     //Értékelés
     if (hiba ==0) document.nyer.eredmeny.value='Jól választottál!';
       else document.nyer.eredmeny.value=hiba+' hibás választ adtál meg. Megpróbálod újra?';
-    }
-       
+    }    
   </script>
   <form name="nyer">
     <div class="mb-3 row">
@@ -87,7 +85,7 @@
         </button>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-lg d-grid gap-2 col-md-4 mx-auto my-5">
+      <button type="submit" onclick="ertekelo()" class="btn d-grid gap-2 col-2 mx-auto ">
         Válaszok rögzítése
     </button>
     
