@@ -5,37 +5,39 @@
     oldalunkon!
   </h2>
 </div>
-<div class="container mt-5">
+<div class="container mt-5 ">
+  <div class="register">
   <div class="mb-3 row">
-    <label for="inputName" class="col-md-2 col-form-label">Név:</label>
+    <label for="inputName" class="col-md-3 col-form-label">Név:</label>
     <div class="col-md-10">
       <input class="form-control" id="name" ng-model="model.nev" />
     </div>
   </div>
   <div class="mb-3 row">
-    <label for="inputEmail" class="col-md-2 col-form-label">E-mail cím:</label>
+    <label for="inputEmail" class="col-md-3 col-form-label">E-mail cím:</label>
     <div class="col-md-10">
       <input class="form-control" id="email" ng-model="model.email" />
     </div>
   </div>
   <div class="mb-3 row">
-    <label for="inputTel" class="col-md-2 col-form-label">Telefonszám:</label>
+    <label for="inputTel" class="col-md-3 col-form-label telefonszam">Telefonszám:</label>
     <div class="col-md-10">
       <input class="form-control" id="telszam" ng-model="model.telszam" />
     </div>
-  </div>
+  </div>    
   <div class="mb-3 row">
-    <label for="inputPassword" class="col-md-2 col-form-label">Jelszó:</label>
+    <label for="inputPassword" class="col-md-3 col-form-label">Jelszó:</label>
     <div class="col-md-10">
       <input type="password" class="form-control" id="jelszo" ng-model="model.jelszo" />
     </div>
   </div>
   <div class="mb-3 row">
-    <label for="inputLakcim" class="col-md-2 col-form-label">Lakcím:</label>
+    <label for="inputLakcim" class="col-md-3 col-form-label">Lakcím:</label>
     <div class="col-md-10">
       <input class="form-control" id="lakcim" ng-model="model.lakcim" />
     </div>
   </div>
+</div>
   <div class="text-center mt-5">
     <button type="button" class="btn" ng-click="register()">
       Regisztrálok
