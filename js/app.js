@@ -51,8 +51,8 @@
           })
           .state('kosar', {
             url: '/kosar',
-            templateUrl: './html/cart.html',
-            controller: 'kosarController'  
+            templateUrl: './html/kosar.html',
+            /*controller: 'kosarController'  */
           });
 
         $urlRouterProvider.otherwise('/');
@@ -70,6 +70,8 @@
         // Set global variables
         $rootScope.user = null;
         $rootScope.bejelentkezve = false;
+        $rootScope.cart = [];
+
 
       }
     ])
@@ -98,23 +100,18 @@
     ])
 
     .controller("termekController", [
+      "$rootScope",
       "$scope",
       "http",
-      function ($scope, http) {
+      function ($rootScope, $scope, http) {
         $scope.searchTerm = '';
         $scope.cardHeight = 0;
 
         http
           .request({
-            url: "./php/get.php",
+            url: "./php/termekek.php",
             method: "POST",
-            data: {
-              db: "barbershop",
-              query: "SELECT * FROM `termekek`",
-              isAssoc: true,
-            },
           })
-
           .then(data => {
             $scope.data = data;
             $scope.filteredData = data;
@@ -137,6 +134,9 @@
           return $scope.searchTerm.length > 0 && $scope.filteredData.length === 0;
         };
 
+        $scope.toCart = (termek) => {
+          $rootScope.cart.push(termek);
+        }
       },
     ])
 
