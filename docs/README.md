@@ -15,3 +15,10 @@
     https://imagecompressor.com/
 
 ### Programkód:
+    A programkód Visual Studio Code-ban készült.
+
+### Használt programozási nyelvek:
+    - HTML
+    - JavaScript
+    - CSS
+    - PHP
