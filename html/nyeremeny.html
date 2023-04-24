@@ -11,7 +11,7 @@
     if (document.nyer.valasz4[0].checked) hiba=hiba-1;
       
     //Értékelés
-    if (hiba ==0) document.nyer.eredmeny.value='Jól választottál!';
+    if (hiba ==0) document.nyer.eredmeny.value='Az összes válasz helyes! Gratulálok!';
       else document.nyer.eredmeny.value=hiba+' hibás választ adtál meg. Megpróbálod újra?';
     }    
   </script>
@@ -70,6 +70,7 @@
         <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="kopaszodas"
           aria-label="asd">Kopaszodást eltűntető hajvágás
       </div>
+      
       <div class="col-md-10 mt-5">
         <button onclick="ertekelo()" class="btn">
           Kiértékelés
