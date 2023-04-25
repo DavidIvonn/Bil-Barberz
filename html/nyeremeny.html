@@ -1,95 +1,98 @@
 <div ng-include src="'./html/navigate.html'"></div>
-<h1 class="mt-5">Válaszold meg helyesen kérdéseinket és egy ingyen barbershop tanfolyamnak lehetsz részese!</h1>
-<div class="container mt-5">
-  <script>
-    function ertekelo(){
-    let hiba =4;
-    // Kérdés1 radiogomb
-    if (document.nyer.valasz1[0].checked) hiba=hiba-1;
-    if (document.nyer.valasz2[1].checked) hiba=hiba-1;
-    if (document.nyer.valasz3[2].checked) hiba=hiba-1;
-    if (document.nyer.valasz4[0].checked) hiba=hiba-1;
-      
-    //Értékelés
-    if (hiba ==0) document.nyer.eredmeny.value='Jól választottál!';
-      else document.nyer.eredmeny.value=hiba+' hibás választ adtál meg. Megpróbálod újra?';
-    }    
-  </script>
+
+<div class="container my-5">
   <form name="nyer">
     <div class="mb-3 row">
-      <label for="inputEmail" class="col-md-2 col-form-label">
-        E-mail:
-      </label>
+      <label for="inputEmail" class="col-md-2 col-form-label fw-bold">E-mail:</label>
       <div class="col-md-10">
-        <input type="text" class="form-control" />
+        <input type="email" class="form-control" ng-model="email" placeholder="Add meg az e-mail címed" required>
       </div>
     </div>
-    <div>
-      <h3>
-        1. Milyen típusú hajszárító segít a fodrászoknak a haj formázásában?
-      </h3>
-      <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="kezi" aria-label="asd">Kézi
-      hajszárító
-      <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="buras" aria-label="asd">Búrás
-      hajszárító
-      <input class="form-check-input" type="radio" name="valasz1" id="valasz1" value="ipari" aria-label="asd">Ipari
-      hajszárító
+    <div class="mb-3">
+      <h3 class="fw-bold">1. Milyen típusú hajszárító segít a fodrászoknak a haj formázásában?</h3>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz1" id="valasz1" ng-model="valasz1" value="kezi">
+        <label class="form-check-label" for="valasz1">Kézi hajszárító</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz1" id="valasz2" ng-model="valasz1" value="buras">
+        <label class="form-check-label" for="valasz2">Búrás hajszárító</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz1" id="valasz3" ng-model="valasz1" value="ipari">
+        <label class="form-check-label" for="valasz3">Ipari hajszárító</label>
+      </div>
     </div>
 
-    <div>
-        <h3 class="mt-4">
-          2. Mi az a frizuratípus, amelynek a neve a "pixie"?
-        </h3>
-        <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="oldalt" aria-label="asd">Oldalt
-        felnyírt haj
-        <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="rovid" aria-label="asd">Rövid
-        felnyírt frizuratípus
-        <input class="form-check-input" type="radio" name="valasz2" id="valasz2" value="felhosszu"
-          aria-label="asd">Félhosszú női hajvágás
+    <div class="mb-3">
+      <h3 class="fw-bold mt-4">2. Mi az a frizuratípus, amelynek a neve a "pixie"?</h3>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz2" id="valasz4" ng-model="valasz2" value="oldalt">
+        <label class="form-check-label" for="valasz4">Oldalt felnyírt haj</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz2" id="valasz5" ng-model="valasz2" value="rovid">
+        <label class="form-check-label" for="valasz5">Rövid felnyírt frizuratípus</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz2" id="valasz6" ng-model="valasz2" value="felhosszu">
+        <label class="form-check-label" for="valasz6">Félhosszú női hajvágás</label>
+      </div>
     </div>
 
-      <div>
-        <h3 class="mt-4">
-          3. Milyen típusú hajfesték segít a fodrászoknak eltávolítani a hajban lévő sárga vagy aranyesetű
-          árnyalatot?</h3>
-        <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="hajszinezo"
-          aria-label="asd">Hajszínező
-        <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="HennaPlus"
-          aria-label="asd">HennaPlus hajfesték
-        <input class="form-check-input" type="radio" name="valasz3" id="valasz3" value="hamvasito"
-          aria-label="asd">Hamvasító
+    <div class="mb-3">
+      <h3 class="fw-bold mt-4">3. Milyen típusú hajfesték segít a fodrászoknak eltávolítani a hajban
+        lévő sárga vagy aranyesetű árnyalatot?</h3>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz3" id="valasz7" ng-model="valasz3" value="hajszinezo">
+        <label class="form-check-label" for="valasz7">Hajszínező</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz3" id="valasz8" ng-model="valasz3" value="HennaPlus">
+        <label class="form-check-label" for="valasz8">HennaPlus hajfesték</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz3" id="valasz9" ng-model="valasz3" value="hamvasito">
+        <label class="form-check-label" for="valasz9">Hamvasító</label>
+      </div>
+    </div>
+    <div class="mb-3">
+      <h3 class="fw-bold mt-4">4. Mi az a frizuratípus, amelynek a neve a "fodrászati vágás"?</h3>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz4" id="valasz10" ng-model="valasz4" value="ferfi">
+        <label class="form-check-label" for="valasz10">Férfi frizuratípus hosszú hajra</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz4" id="valasz11" ng-model="valasz4" value="rovid">
+        <label class="form-check-label" for="valasz11">Rövid hajtípus férfiaknak</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="valasz4" id="valasz12" ng-model="valasz4" value="kopaszodas">
+        <label class="form-check-label" for="valasz12">Kopaszodást eltűntető hajvágás</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <div class="col-md-12">
+          <button class="btn btn-primary me-3  w-100" type="button" ng-click="ertekelo()">Kiértékelés</button>
+        </div>
+        <div class="col-md-12 p-2">
+          <input name="eredmeny" type="text" class="form-control d-inline-block w-100" id="eredmeny"
+          ng-model="eredmeny" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 p-2">
+        <button type="button" class="btn btn-success d-grid gap-2 col-md-4 w-100" ng-click="mentes()">Válaszok
+          rögzítése</button>
       </div>
 
-      <div>
-        <h3 class="mt-4">
-          4. Mi az a frizuratípus, amelynek a neve a "fodrászati vágás"?</h3>
-        <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="ferfi" aria-label="asd">Férfi
-        frizuratípus hosszú hajra
-        <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="rovid" aria-label="asd">Rövid
-        hajtípus férfiaknak
-        <input class="form-check-input" type="radio" name="valasz4" id="valasz4" value="kopaszodas"
-          aria-label="asd">Kopaszodást eltűntető hajvágás
-      </div>
-      <div class="col-md-10 mt-5">
-        <button onclick="ertekelo()" class="btn">
-          Kiértékelés
-        </button>
-        <label>
-
-          <input name="eredmeny" type="text" class="form-control" id="eredmeny" size="50" disabled />
-        </label>
-      </div>
-      <div class="mt-3">
-        <button class="btn" type="reset">
-          Alapállapot
-        </button>
-      </div>
-
-      <button type="submit" onclick="ertekelo()" class="btn d-grid gap-2 col-2 mx-auto ">
-        Válaszok rögzítése
-    </button>
-    
+      </div>      
   </form>
 </div>
+
+
 
 <div ng-include src="'./html/footer.html'"></div>
