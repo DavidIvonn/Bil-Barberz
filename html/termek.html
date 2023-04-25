@@ -7,7 +7,7 @@
     <div class="cart-icon">
       <a ui-sref="kosar" ng-disabled="$root.bejelentkezve === false" ng-click="handleCartClick()">
         <i class="fa fa-shopping-cart"></i>
-        <span class="badge" ng-show="cart.length">{{cart.length}}</span>
+        <span class="badge" ng-show="updateCartItemCount() > 0">{{updateCartItemCount()}}</span>
       </a>
     </div>
     

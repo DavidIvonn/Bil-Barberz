@@ -15,20 +15,19 @@
     </div>
     <div class="col-12">
       <label for="inputState" class="form-label">Válasszon stílust:</label>
-      <select id="inputState" class="form-select" ng-model="selectedStyle" ng-options="stilus.megnev for stilus in data track by stilus.stilusid" required>
+      <select id="inputState" class="form-select" ng-model="selectedStyle"
+        ng-options="stilus.megnev for stilus in data track by stilus.stilusid" required>
         <option value="">-- Válasszon stílust --</option>
       </select>
     </div>
     <div class="col-12">
       <label for="datepicker" class="form-label">Dátum:</label>
-      <input type="date" class="form-control" id="datepicker" ng-model="selectedDate" ng-change="updateValidTimes()" required>
+      <input type="date" class="form-control" id="datepicker" ng-model="selectedDate" ng-change="updateValidTimes()"
+        min="{{minDate | date:'yyyy-MM-dd'}}" required>
       <div ng-if="isSunday()">
         <small class="text-muted">A vasárnapok nem választhatók ki</small>
       </div>
     </div>
-    
-    
-    
     <div class="col-12">
       <label for="inputState" class="form-label">Időpont:</label>
       <select id="inputState" class="form-select" ng-model="selectedTime" required>
@@ -36,7 +35,7 @@
         <option ng-repeat="time in validTimes" value="{{time}}">{{time}}</option>
       </select>
     </div>
-    
+
     <div class="col-md-12">
       <label for="message" class="form-label">Egyéb megjegyzés:</label>
       <textarea class="form-control" id="message" ng-model="message"></textarea>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 23. 12:07
+-- Létrehozás ideje: 2023. Ápr 25. 13:28
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -37,6 +37,14 @@ CREATE TABLE `felhasznalok` (
   `lakcim` varchar(100) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `felhasznalok`
+--
+
+INSERT INTO `felhasznalok` (`felhaszid`, `nev`, `telszam`, `email`, `jelszo`, `lakcim`) VALUES
+(1, 'asd', 127, 'pisti12312@gmaill.com', 'asd', 'asd'),
+(2, 'ballaur', 127, 'test@test.com', 'asd', 'asd213');
+
 -- --------------------------------------------------------
 
 --
@@ -58,21 +66,19 @@ CREATE TABLE `galeria` (
 CREATE TABLE `idopontfoglalas` (
   `idopontid` bigint(10) NOT NULL,
   `felhasznaloid` smallint(10) NOT NULL,
-  `telszam` tinyint(11) NOT NULL,
-  `idopont` date NOT NULL,
-  `megjegyzes` varchar(200) COLLATE utf8_hungarian_ci NOT NULL
+  `telszam` bigint(11) NOT NULL,
+  `megjegyzes` varchar(200) COLLATE utf8_hungarian_ci NOT NULL,
+  `datum` date NOT NULL,
+  `idopont` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `idopontfoglalas`
 --
 
-INSERT INTO `idopontfoglalas` (`idopontid`, `felhasznaloid`, `telszam`, `idopont`, `megjegyzes`) VALUES
-(1, 0, 0, '2023-02-17', ''),
-(2, 0, 0, '2023-02-17', ''),
-(3, 0, 0, '2023-02-17', ''),
-(4, 0, 0, '2023-02-17', ''),
-(5, 0, 0, '2023-02-17', '');
+INSERT INTO `idopontfoglalas` (`idopontid`, `felhasznaloid`, `telszam`, `megjegyzes`, `datum`, `idopont`) VALUES
+(6, 1, 127, 'asd', '0000-00-00', '00:00:00'),
+(7, 1, 6305901404, 'asd', '2023-05-03', '09:00:00');
 
 -- --------------------------------------------------------
 
@@ -89,6 +95,24 @@ CREATE TABLE `nyeremeny` (
   `valasz4` varchar(50) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `nyeremeny`
+--
+
+INSERT INTO `nyeremeny` (`nyeremenyid`, `email`, `valasz1`, `valasz2`, `valasz3`, `valasz4`) VALUES
+(1, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(2, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(3, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(4, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(5, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(6, '', 'kezi', 'rovid', 'hamvasito', 'rovid'),
+(7, '', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(8, '', 'kezi', 'rovid', 'hamvasito', 'rovid'),
+(9, '', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(10, '', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(11, '', 'kezi', 'rovid', 'hamvasito', 'kopaszodas'),
+(12, '', 'kezi', 'rovid', 'hamvasito', 'ferfi');
+
 -- --------------------------------------------------------
 
 --
@@ -96,7 +120,7 @@ CREATE TABLE `nyeremeny` (
 --
 
 CREATE TABLE `rendeles` (
-  `rendelesid` bigint(10) NOT NULL,
+  `rendelesid` int(11) NOT NULL,
   `termekid` smallint(5) NOT NULL,
   `dbszam` mediumint(7) NOT NULL,
   `fizetesmod` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
@@ -104,6 +128,14 @@ CREATE TABLE `rendeles` (
   `vegosszeg` int(10) NOT NULL,
   `datum` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `rendeles`
+--
+
+INSERT INTO `rendeles` (`rendelesid`, `termekid`, `dbszam`, `fizetesmod`, `felhaszid`, `vegosszeg`, `datum`) VALUES
+(1682421234, 2, 1, 'Utánvét', 1, 6000, '2023-04-25'),
+(1682421234, 3, 1, 'Utánvét', 1, 6000, '2023-04-25');
 
 -- --------------------------------------------------------
 
@@ -202,12 +234,6 @@ ALTER TABLE `nyeremeny`
   ADD PRIMARY KEY (`nyeremenyid`);
 
 --
--- A tábla indexei `rendeles`
---
-ALTER TABLE `rendeles`
-  ADD PRIMARY KEY (`rendelesid`);
-
---
 -- A tábla indexei `stilus`
 --
 ALTER TABLE `stilus`
@@ -227,25 +253,19 @@ ALTER TABLE `termekek`
 -- AUTO_INCREMENT a táblához `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  MODIFY `felhaszid` smallint(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `felhaszid` smallint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT a táblához `idopontfoglalas`
 --
 ALTER TABLE `idopontfoglalas`
-  MODIFY `idopontid` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idopontid` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT a táblához `nyeremeny`
 --
 ALTER TABLE `nyeremeny`
-  MODIFY `nyeremenyid` smallint(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT a táblához `rendeles`
---
-ALTER TABLE `rendeles`
-  MODIFY `rendelesid` bigint(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `nyeremenyid` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT a táblához `stilus`
