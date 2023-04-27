@@ -1,27 +1,33 @@
 <div ng-include src="'./html/navigate.html'"></div>
 
 <div class="header">
-    <h2>Kosár</h2>
+  <h2>Kosár</h2>
 </div>
-
 <div class="container">
   <div class="row">
     <table class="table-bordered table-striped">
       <thead class="text-white">
         <tr ng-if="cart.length">
-          <th ng-repeat="(k, v) in cart[0] track by $index"
-              style="color:white!important">
-            {{k}}
-          </th>
+          <th class="text-dark">Termék neve</th>
+          <th class="text-dark">Darabszám</th>
+          <th class="text-dark">Egységár</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="x in cart track by $index">
-          <td ng-repeat="(k, v) in x track by $index">{{v}}</td>
+        <tr ng-repeat="item in cart track by $index" >
+          <td>{{item.megnev}}</td>
+          <td>{{item.dbszam}}</td>
+          <td>{{item.ar}} Ft</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Összesen:</td>
+          <td>{{$root.total}} Ft</td>
         </tr>
       </tbody>
     </table>
+    <button type="button" class="btn btn-secondary w-100" ng-click="kosarFeltoltes()" ng-if="cart.length">
+      Megrendelés
+    </button>
   </div>
 </div>
-
 <div ng-include src="'./html/footer.html'"></div>

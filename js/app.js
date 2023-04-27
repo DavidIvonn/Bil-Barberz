@@ -37,7 +37,8 @@
           })
           .state('nyeremeny', {
             url: '/nyeremeny',
-            templateUrl: './html/nyeremeny.html'
+            templateUrl: './html/nyeremeny.html',
+            controller: "nyeremenyController",
           })
           .state('login', {
             url: '/login',
@@ -52,13 +53,12 @@
           .state('kosar', {
             url: '/kosar',
             templateUrl: './html/kosar.html',
-            /*controller: 'kosarController'  */
+            controller: 'kosarController',
           });
 
         $urlRouterProvider.otherwise('/');
       }
     ])
-
     //app run
     .run([
       "$rootScope",
@@ -67,20 +67,116 @@
       "http",
       function ($rootScope, $transitions, $timeout, http) {
 
-        // Set global variables
+        // Globális változók beállítása
         $rootScope.user = null;
         $rootScope.bejelentkezve = false;
         $rootScope.cart = [];
 
+        // Oldalfrissítés esetén a 'home' state-re navigálás
+        $transitions.onStart({}, function (transition) {
+          if (transition.from().name === '' && transition.to().name !== 'home') {
+            return transition.router.stateService.target('home');
+          }
+        });
 
       }
     ])
+    .controller("nyeremenyController", [
+      "$scope",
+      "$http",
+      function ($scope, $http) {
+        $scope.sikerult = false;
+        $scope.email = "";
+        $scope.valasz1 = "";
+        $scope.valasz2 = "";
+        $scope.valasz3 = "";
+        $scope.valasz4 = "";
+        $scope.eredmeny = "";
+        $scope.ertekelo = function () {
+          let hiba = 4;
 
-    //
+          if ($scope.valasz1 == "" || $scope.valasz2 == "" || $scope.valasz3 == "" || $scope.valasz4 == "") {
+            $scope.eredmeny = "Töltse ki az összes mezőt az értékelés előtt!"
+          }
+          else {
+            hiba += ($scope.valasz1 === "kezi" || $scope.valasz1 === "rovid" || $scope.valasz1 === "ferfi") ? -1 : 1;
+            hiba += ($scope.valasz1 === "hamvasito") ? 1 : -1;
+
+            $scope.eredmeny = (hiba === 0) ? "Jól választottál! Add le a válaszod hogy felkerülj a nyereményjátékra!" : hiba + ' hibás választ adtál meg! Próbáld meg újra!';
+            $scope.sikerult = (hiba === 0);
+          }
+        };
+        $scope.mentes = function () {
+          if ($scope.sikerult) {
+            $http({
+              url: './php/get.php',
+              method: 'POST',
+              data: {
+                db: 'barbershop',
+                query: 'INSERT INTO `nyeremeny` (email, valasz1, valasz2, valasz3, valasz4) VALUES (?, ?, ?, ?, ?)',
+                params: [$scope.email, $scope.valasz1, $scope.valasz2, $scope.valasz3, $scope.valasz4]
+              }
+            }).then(function () {
+              alert("Köszönjük a részvételt!");
+              $state.go("")
+            }).catch(function () {
+              alert("Hiba történt az adatok felvezéteskor! Próbálja újra később!")
+            });
+          }
+          else {
+            alert("Hibás válaszok! Próbálja meg újra!");
+          }
+        }
+      }
+    ])
+    .controller("kosarController", [
+      "$scope",
+      "http",
+      "$rootScope",
+      "$state",
+      function ($scope, http, $rootScope, $state) {
+        $scope.currentUser = $rootScope.user.felhaszid;
+        $scope.kosarFeltoltes = function () {
+          let rendelesek = [];
+          for (let i = 0; i < $rootScope.cart.length; i++) {
+            let item = {
+              termekid: $rootScope.cart[i].termekid,
+              dbszam: $rootScope.cart[i].dbszam,
+              fizetesmod: 'Utánvét',
+              felhaszid: $scope.currentUser,
+              datum: moment().format('YYYY-MM-DD HH:mm:ss')
+            };
+            rendelesek.push(item);
+          }
+          http
+            .request({
+              method: "POST",
+              url: "./php/kosar.php",
+              data: {
+                products: rendelesek,
+                fizetesmod: 'Utánvét',
+                felhaszid: $scope.currentUser,
+                total: $rootScope.total,
+                datum: moment().format('YYYY-MM-DD HH:mm:ss')
+              },
+            })
+            .then(function (data) {
+              alert(data);
+              $state.go("home");
+              $rootScope.cart = [];
+            })
+            .catch(function (error) {
+              alert("Hiba! Kérjük próbálja meg a rendelést később!")
+              $state.go("home");
+              $rootScope.cart = [];
+            });
+        };
+      }])
     .controller("arController", [
       "$scope",
       "http",
       function ($scope, http) {
+
         http
           .request({
             url: "./php/get.php",
@@ -98,7 +194,6 @@
           .catch((e) => console.log(e));
       }
     ])
-
     .controller("termekController", [
       "$rootScope",
       "$scope",
@@ -106,6 +201,11 @@
       function ($rootScope, $scope, http) {
         $scope.searchTerm = '';
         $scope.cardHeight = 0;
+        $scope.handleCartClick = function () {
+          if (!$rootScope.bejelentkezve) {
+            alert("A rendeléshez jelentkezzen be!");
+          }
+        };
 
         http
           .request({
@@ -119,28 +219,47 @@
             $scope.$applyAsync();
           })
           .catch((e) => console.log(e));
-
-        // kereső függvény
         $scope.search = function () {
-          var term = $scope.searchTerm.toLowerCase();
+          let term = $scope.searchTerm.toLowerCase();
           $scope.filteredData = $scope.data.filter(function (card) {
-            var name = card.megnev.toLowerCase();
+            let name = card.megnev.toLowerCase();
             return name.indexOf(term) > -1;
           });
         };
-
         // üzenet megjelenítése, ha nincs találat
         $scope.noResults = function () {
           return $scope.searchTerm.length > 0 && $scope.filteredData.length === 0;
         };
-
         $scope.toCart = (termek) => {
-          $rootScope.cart.push(termek);
+          if ($rootScope.bejelentkezve) {
+            // Megkeressük, hogy van-e már ilyen termék a kosárban
+            const existingItemIndex = $rootScope.cart.findIndex(item => item.termekid === termek.termekid);
+
+            if (existingItemIndex !== -1) {
+              // Ha van már ilyen termék a kosárban, akkor csak növeljük a darabszámot
+              $rootScope.cart[existingItemIndex].dbszam++;
+              alert("Darabszám növelve!");
+            } else {
+              // Ha nincs még ilyen termék a kosárban, akkor hozzáadjuk új elemként
+              $rootScope.cart.push({ ...termek, dbszam: 1 });
+              alert("Kosárba rakva!");
+            }
+            $rootScope.total = $rootScope.cart.reduce((sum, item) => sum + item.ar * item.dbszam, 0);
+            $scope.updateCartItemCount = function () {
+              let itemCount = 0;
+              for (let i = 0; i < $rootScope.cart.length; i++) {
+                itemCount += $rootScope.cart[i].dbszam;
+              }
+              return itemCount;
+            };
+
+          }
+          else {
+            alert("Kérjük a rendeléshez jelentkezzen be!");
+          }
         }
       },
     ])
-
-
     .controller("registerController", [
       "$scope",
       "http",
@@ -218,9 +337,6 @@
         }
       }
     ])
-
-
-    //
     .controller("loginController", [
       "$scope",
       "http",
@@ -237,9 +353,9 @@
           $rootScope.bejelentkezve = false;
           $rootScope.user = null;
           $rootScope.$applyAsync();
-          $("#reservationModalLabel").text("Kijelentkezve!");
+          $("#bejelentkezKijelentkezModalLabel").text("Kijelentkezve!");
           $(".modal-body").text("Sikeresen kijelentkezett!");
-          $("#reservationModal").modal("show");
+          $("#bejelentkezKijelentkezModal").modal("show");
           $state.go("home")
         }
 
@@ -256,9 +372,9 @@
                 console.log($rootScope.user);
                 $rootScope.bejelentkezve = true;
                 $rootScope.$applyAsync();
-                $("#reservationModalLabel").text("Bejelentkezve!");
+                $("#bejelentkezKijelentkezModalLabel").text("Bejelentkezve!");
                 $(".modal-body").text("Sikeresen bejelentkezett!");
-                $("#reservationModal").modal("show");
+                $("#bejelentkezKijelentkezModal").modal("show");
                 $state.go("home")
 
               } else {
@@ -277,58 +393,20 @@
         }
       }
     ])
-
-    
-
-/*.controller("kosarController", [
-  "$scope",
-  "http",
-  "$location",
-  function($scope, $http, $location, authService){
-    if (!authService.bejelentkezve()) {
-      // ha a felhasználó nincs bejelentkezve, akkor átirányítjuk a bejelentkezési oldalra
-      $location.path('/login');
-    }
-  
-    // inicializáljuk a kosár elemeit
-    $scope.kosarElemek = [];
-  
-    // hozzáadunk egy elemet a kosárhoz
-    $scope.hozzaadKosarhoz = function(termek) {
-      // ellenőrizzük, hogy a termék már hozzá van adva a kosárhoz
-      if ($scope.kosarElemek.includes(termek)) {
-        alert('Ez a termék már hozzá van adva a kosárhoz!');
-        return;
-      }
-  
-      // hozzáadjuk a terméket a kosárhoz
-      $scope.kosarElemek.push(termek);
-    };
-  
-    // eltávolítunk egy elemet a kosárból
-    $scope.torolKosarbol = function(termek) {
-      // megkeressük a terméket a kosárban
-      var index = $scope.kosarElemek.indexOf(termek);
-  
-      // ha a termék megtalálható a kosárban, akkor eltávolítjuk
-      if (index !== -1) {
-        $scope.kosarElemek.splice(index, 1);
-      }
-    };
-  }])
-
-*/
     .controller("idopontController", [
       "$scope",
       "http",
       "$rootScope",
       "$state",
       function ($scope, http, $rootScope, $state) {
-        // if (!$rootScope.bejelentkezve) {
-        //   alert('Be kell jelentkezned a foglaláshoz!');
-        //   $state.go("login");
-        // }
-        // Make an HTTP POST request to retrieve data from the server
+        if (!$rootScope.bejelentkezve) {
+          alert('Be kell jelentkezned a foglaláshoz!');
+          $state.go("login");
+        }
+        else {
+          $scope.minDate = new Date();
+        }
+
         http.request({
           url: "./php/get.php",
           method: "POST",
@@ -342,11 +420,12 @@
             $scope.data = data;
             $scope.$applyAsync();
             $scope.updateValidTimes = function () {
+              $scope.minDate = new Date();
               // get the day of the week for the selected date
-              var date = new Date($scope.selectedDate);
-              var dayOfWeek = date.getDay();
+              let date = new Date($scope.selectedDate);
+              let dayOfWeek = date.getDay();
               $scope.isSunday = function () {
-                var date = new Date($scope.selectedDate);
+                let date = new Date($scope.selectedDate);
                 return date.getDay() === 0;
               };
 
@@ -380,35 +459,42 @@
           .catch((e) => console.log(e));
 
         $scope.submitForm = function () {
-          // Create a new Date object with the selected date and time
-          var selectedDateTime = new Date($scope.selectedDate + 'T' + $scope.selectedTime + ':00');
+          if (!$scope.selectedDate || !$scope.selectedTime) {
+            alert("Kérjük, válasszon dátumot és időpontot!");
+            return;
+          }
 
-          // Format the selected date and time as a string
-          var selectedDateTimeString = $scope.selectedDate + 'T' + $scope.selectedTime + ':00';
+          // Check if the selected date is in the past
+          let currentDate = new Date();
+          let selectedDate = new Date($scope.selectedDate);
+          if (selectedDate.setHours(0, 0, 0, 0) < currentDate.setHours(0, 0, 0, 0)) {
+            alert("Múltbéli dátumot nem lehet foglalni! Kérjük, válasszon egy jövőbeli dátumot.");
+            return;
+          }
 
-          // Make an HTTP POST request to insert the booking into the database
           http.request({
-            url: './php/foglalas.php',
+            url: './php/get.php',
             method: 'POST',
             data: {
-              idopontid: null, // The database should automatically assign an ID to the new booking
-              idopont: selectedDateTimeString,
-              megjegyzes: $scope.comment,
-              felhasznaloid: $rootScope.user.felhaszid,
-              telszam: $scope.phoneNumber
+              db: 'barbershop',
+              query: 'INSERT INTO `idopontfoglalas` (idopontid, megjegyzes, felhasznaloid, telszam, datum, idopont) VALUES (?, ?, ?, ?, ?, ?)',
+              params: [null, $scope.message, $rootScope.user.felhaszid, $scope.phone, $scope.selectedDate, $scope.selectedTime,]
             }
           })
             .then(function (response) {
               // Handle the response from the server
               console.log(response);
-              console.log(data)
+              alert("Foglalás sikeresen rögzítve!");
+              $state.go("home");
             })
             .catch(function (error) {
               // Handle any errors that occurred during the request
               console.log(error.data);
               console.error(error);
+              alert("Hiba történt a foglalás rögzítésekor! Próbálja újra később!");
             });
         };
+
 
 
       }]);

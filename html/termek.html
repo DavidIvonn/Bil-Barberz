@@ -5,18 +5,22 @@
   <div class="header">
     <h2>Termékeink</h2>
     <div class="cart-icon">
-     <a ui-sref="kosar" href="#"> <i class="fa fa-shopping-cart"></i></a>
+      <a ui-sref="kosar" ng-disabled="$root.bejelentkezve === false" ng-click="handleCartClick()">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="badge" ng-show="updateCartItemCount() > 0">{{updateCartItemCount()}}</span>
+      </a>
     </div>
+    
+    
+    
   </div>
   <!-- Title -->
   <div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
     <h2 class="display-6 text-muted my-5">
       Tekintsd meg termékeinket:
     </h2>
-
     <p>
-      <b>INGYENES SZÁLLÍTÁS</b> 15.000 - Ft feletti vásárlás esetén. Rendelj most, hogy nehogy lemaradj új
-      kedvezményeinkről!!
+      <b>CSAK UTÁNVÉTES FIZETÉS!</b> Jelentkezzen be és a rendelés azonnal elérhetővé válik!
     </p>
 
   </div>
@@ -54,7 +58,7 @@
             </button>
           </div>
           <button class="btn btn-sm btn-dark kosar float-end px-1 shadow-sm w-100"
-                  ng-click="toCart(termekek)">
+                  ng-click="toCart(termekek) ">
             Kosárba
           </button>
         </div>

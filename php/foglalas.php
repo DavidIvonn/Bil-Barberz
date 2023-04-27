@@ -6,16 +6,16 @@ require_once('../../common/php/environment.php');
 $args = Util::getArgs();
 
 // Set arguments
-$args['felhasznaloid'] = $result[0]['felhasznaloid'];
-$args['telszam'] = $data['telszam'];
-$args['idopont'] = $selectedDateTimeString;
-$args['megjegyzes'] = $data['megjegyzes'];
+$args['felhasznaloid'] = $args['felhasznaloid'];
+$args['telszam'] = $args['telszam'];
+$args['idopont'] = $args['idopont'];
+$args['megjegyzes'] = $args['megjegyzes'];
 
 // Connect to database
 $db = new Database();
 
 // Set query
-$query = "INSERT INTO idopontok (felhasznaloid, telszam, idopont, megjegyzes) VALUES (:felhasznaloid, :telszam, :idopont, :megjegyzes);";
+$query = "INSERT INTO idopontfoglalas (felhasznaloid, telszam, idopont, megjegyzes) VALUES (:felhasznaloid, :telszam, :idopont, :megjegyzes);";
 
 // Execute query
 $result = $db->execute($query, $args);
