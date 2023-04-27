@@ -93,19 +93,24 @@
         $scope.valasz4 = "";
         $scope.eredmeny = "";
         $scope.ertekelo = function () {
-          let hiba = 4;
-
-          if ($scope.valasz1 == "" || $scope.valasz2 == "" || $scope.valasz3 == "" || $scope.valasz4 == "") {
-            $scope.eredmeny = "Töltse ki az összes mezőt az értékelés előtt!"
+          const helyesValaszok = ["kezi", "rovid", "hamvasito", "ferfi"];
+          let hiba = 0;
+    
+          const valaszok = [$scope.valasz1, $scope.valasz2, $scope.valasz3, $scope.valasz4];
+    
+          for (let i = 0; i < valaszok.length; i++) {
+            if (valaszok[i] === "") {
+              $scope.eredmeny = "Töltse ki az összes mezőt az értékelés előtt!";
+              return;
+            } else {
+              hiba += (valaszok[i] === helyesValaszok[i]) ? 0 : 1;
+            }
           }
-          else {
-            hiba += ($scope.valasz1 === "kezi" || $scope.valasz1 === "rovid" || $scope.valasz1 === "ferfi") ? -1 : 1;
-            hiba += ($scope.valasz1 === "hamvasito") ? 1 : -1;
-
-            $scope.eredmeny = (hiba === 0) ? "Jól választottál! Add le a válaszod hogy felkerülj a nyereményjátékra!" : hiba + ' hibás választ adtál meg! Próbáld meg újra!';
-            $scope.sikerult = (hiba === 0);
-          }
+    
+          $scope.eredmeny = (hiba === 0) ? "Jól választottál! Add le a válaszod, hogy felkerülj a nyereményjátékra!" : hiba + ' hibás választ adtál meg! Próbáld meg újra!';
+          $scope.sikerult = (hiba === 0);
         };
+    
         $scope.mentes = function () {
           if ($scope.sikerult) {
             $http({
@@ -117,8 +122,8 @@
                 params: [$scope.email, $scope.valasz1, $scope.valasz2, $scope.valasz3, $scope.valasz4]
               }
             }).then(function () {
-              alert("Köszönjük a részvételt!");
-              $state.go("")
+              alert("Köszönjük a részvételt! Az email cím felvételre került, ha még nincs!");
+              
             }).catch(function () {
               alert("Hiba történt az adatok felvezéteskor! Próbálja újra később!")
             });
@@ -129,6 +134,7 @@
         }
       }
     ])
+    
     .controller("kosarController", [
       "$scope",
       "http",
