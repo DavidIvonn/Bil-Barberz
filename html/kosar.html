@@ -5,7 +5,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <table class="table-bordered table-striped">
+    <table class="table-bordered table-striped mt-5">
       <thead class="text-white">
         <tr ng-if="cart.length">
           <th class="text-dark">Termék neve</th>
@@ -25,9 +25,11 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" class="btn btn-secondary w-100" ng-click="kosarFeltoltes()" ng-if="cart.length">
+    <button type="button" class="btn btn-secondary w-100 mt-5" ng-click="kosarFeltoltes()" ng-if="cart.length">
       Megrendelés
     </button>
   </div>
+
+  <img src="./img/hatterkep.jpg" alt="">
 </div>
 <div ng-include src="'./html/footer.html'"></div>
