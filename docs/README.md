@@ -17,8 +17,17 @@
 ### Programkód:
     A programkód Visual Studio Code-ban készült.
 
-### Használt programozási nyelvek:
+### Használt programozási nyelvek, környezet:
     - HTML
-    - JavaScript
+    - JavaScript (Angular)
     - CSS
+    - Bootstrap
     - PHP
+    - MySql (XAMPP)
+
+### Projektmenedzsment: 
+    - https://www.figma.com/file/uGIuBMVZYQKIGRhwypsWZ9/BIL-Barberz?type=design&node-id=0-1&t=7rKJULcBIUKbhLDW-0
+    - https://github.com/DavidIvonn/Bil-Barberz/tree/main/docs
+    - https://trello.com/b/v5iLEjx4/barber-shop
+
+### 
