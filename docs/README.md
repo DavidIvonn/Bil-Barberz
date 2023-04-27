@@ -19,7 +19,7 @@
 
 ### Használt programozási nyelvek, környezet:
     - HTML
-    - JavaScript (Angular)
+    - JavaScript (AngularJs, Jquery)
     - CSS
     - Bootstrap
     - PHP
