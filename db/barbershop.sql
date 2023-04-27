@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Ápr 25. 13:28
+-- Létrehozás ideje: 2023. Ápr 27. 08:37
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -44,18 +44,6 @@ CREATE TABLE `felhasznalok` (
 INSERT INTO `felhasznalok` (`felhaszid`, `nev`, `telszam`, `email`, `jelszo`, `lakcim`) VALUES
 (1, 'asd', 127, 'pisti12312@gmaill.com', 'asd', 'asd'),
 (2, 'ballaur', 127, 'test@test.com', 'asd', 'asd213');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `galeria`
---
-
-CREATE TABLE `galeria` (
-  `termekkep` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
-  `szam` smallint(10) NOT NULL,
-  `kepnev` varchar(50) COLLATE utf8_hungarian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
 
