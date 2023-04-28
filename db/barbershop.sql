@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Ápr 27. 08:37
+-- Létrehozás ideje: 2023. Ápr 28. 10:23
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -42,8 +42,9 @@ CREATE TABLE `felhasznalok` (
 --
 
 INSERT INTO `felhasznalok` (`felhaszid`, `nev`, `telszam`, `email`, `jelszo`, `lakcim`) VALUES
-(1, 'asd', 127, 'pisti12312@gmaill.com', 'asd', 'asd'),
-(2, 'ballaur', 127, 'test@test.com', 'asd', 'asd213');
+(3, 'Morvai Letícia', 127, 'morvailetti@gmail.com', 'jelszo1', '6900 Makó Sas utca 4.'),
+(4, 'Dávid Ivonn', 127, 'davidivonn@gmail.com', 'jelszo2', '6775 Kiszombor Kölcsey utca 3/b'),
+(5, 'Baranyi András', 127, 'baranyiandras@gmail.com', 'jelszo3', '6915 Csanádalberti kis utca 6.');
 
 -- --------------------------------------------------------
 
@@ -65,8 +66,9 @@ CREATE TABLE `idopontfoglalas` (
 --
 
 INSERT INTO `idopontfoglalas` (`idopontid`, `felhasznaloid`, `telszam`, `megjegyzes`, `datum`, `idopont`) VALUES
-(6, 1, 127, 'asd', '0000-00-00', '00:00:00'),
-(7, 1, 6305901404, 'asd', '2023-05-03', '09:00:00');
+(8, 3, 6302297867, '-', '2023-04-28', '09:00:00'),
+(9, 4, 6302295874, '-', '2023-04-26', '08:00:00'),
+(10, 4, 6302295874, '-', '2023-04-28', '10:00:00');
 
 -- --------------------------------------------------------
 
@@ -88,18 +90,9 @@ CREATE TABLE `nyeremeny` (
 --
 
 INSERT INTO `nyeremeny` (`nyeremenyid`, `email`, `valasz1`, `valasz2`, `valasz3`, `valasz4`) VALUES
-(1, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
-(2, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
-(3, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
-(4, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
-(5, 'asd@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
-(6, '', 'kezi', 'rovid', 'hamvasito', 'rovid'),
-(7, '', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
-(8, '', 'kezi', 'rovid', 'hamvasito', 'rovid'),
-(9, '', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
-(10, '', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
-(11, '', 'kezi', 'rovid', 'hamvasito', 'kopaszodas'),
-(12, '', 'kezi', 'rovid', 'hamvasito', 'ferfi');
+(14, 'davidivonn@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(16, 'morvailetti@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi'),
+(17, 'baranyiandris@gmail.com', 'kezi', 'rovid', 'hamvasito', 'ferfi');
 
 -- --------------------------------------------------------
 
@@ -123,7 +116,21 @@ CREATE TABLE `rendeles` (
 
 INSERT INTO `rendeles` (`rendelesid`, `termekid`, `dbszam`, `fizetesmod`, `felhaszid`, `vegosszeg`, `datum`) VALUES
 (1682421234, 2, 1, 'Utánvét', 1, 6000, '2023-04-25'),
-(1682421234, 3, 1, 'Utánvét', 1, 6000, '2023-04-25');
+(1682421234, 3, 1, 'Utánvét', 1, 6000, '2023-04-25'),
+(1682577784, 3, 1, 'Utánvét', 2, 7000, '2023-04-27'),
+(1682577784, 4, 1, 'Utánvét', 2, 7000, '2023-04-27'),
+(1682577827, 3, 1, 'Utánvét', 2, 6000, '2023-04-27'),
+(1682577827, 1, 1, 'Utánvét', 2, 6000, '2023-04-27'),
+(1682580296, 3, 1, 'Utánvét', 4, 5300, '2023-04-27'),
+(1682580296, 11, 1, 'Utánvét', 4, 5300, '2023-04-27'),
+(1682580358, 4, 1, 'Utánvét', 4, 8000, '2023-04-27'),
+(1682580358, 5, 1, 'Utánvét', 4, 8000, '2023-04-27'),
+(1682580473, 3, 1, 'Utánvét', 4, 5300, '2023-04-27'),
+(1682580473, 11, 1, 'Utánvét', 4, 5300, '2023-04-27'),
+(1682580836, 3, 1, 'Utánvét', 4, 7000, '2023-04-27'),
+(1682580836, 5, 1, 'Utánvét', 4, 7000, '2023-04-27'),
+(1682583889, 4, 1, 'Utánvét', 4, 7000, '2023-04-27'),
+(1682583889, 3, 1, 'Utánvét', 4, 7000, '2023-04-27');
 
 -- --------------------------------------------------------
 
@@ -241,19 +248,19 @@ ALTER TABLE `termekek`
 -- AUTO_INCREMENT a táblához `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  MODIFY `felhaszid` smallint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `felhaszid` smallint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `idopontfoglalas`
 --
 ALTER TABLE `idopontfoglalas`
-  MODIFY `idopontid` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idopontid` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT a táblához `nyeremeny`
 --
 ALTER TABLE `nyeremeny`
-  MODIFY `nyeremenyid` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `nyeremenyid` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT a táblához `stilus`
