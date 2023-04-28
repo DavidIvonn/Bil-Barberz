@@ -23,5 +23,7 @@ $result = $db->execute($query, $args);
 // Disconnect
 $db = null;
 
+
+
 // Set response
 Util::setResponse($result);
